@@ -1,6 +1,6 @@
 {
     "name": "nano",
-    "description": "Submission for Proxathon 2024.",
+    "description": "Browse the internet securely and privately.",
     "author": "Leaflet",
     "version": "0.0.1",
     "type": "module",

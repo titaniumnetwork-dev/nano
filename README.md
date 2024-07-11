@@ -1,5 +1,5 @@
 # nano.
-Submission for Proxathon 2024.
+Browse the internet securely and privately. Submission for Proxathon 2024.
 
 ## Running
 Run `pnpm install` to install and `pnpm start` to start.
