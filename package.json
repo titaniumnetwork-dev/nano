@@ -11,7 +11,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "chemicaljs": "^1.2.3",
+        "chemicaljs": "^1.2.5",
         "dreamland": "^0.0.23-pre",
         "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
         "express": "^4.19.2",
