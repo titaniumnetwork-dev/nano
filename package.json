@@ -1,0 +1,28 @@
+{
+    "name": "nano",
+    "description": "Submission for Proxathon 2024.",
+    "author": "Leaflet",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js",
+        "build": "vite build",
+        "dev": "vite",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "chemicaljs": "^1.2.3",
+        "dreamland": "^0.0.23-pre",
+        "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
+        "express": "^4.19.2",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "vite-plugin-dreamland": "^1.2.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.19",
+        "postcss": "^8.4.39",
+        "prettier": "^3.2.5",
+        "tailwindcss": "^3.4.4",
+        "vite": "^5.2.11"
+    }
+}

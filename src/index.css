@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body[data-theme="dark"] {
+    --background: #23231f;
+    --secondary: #2a303a;
+    --text: #ececec;
+    --placeholder: #9b9b9b;
+    --brand: #6b7995;
+}
+
+body[data-theme="light"] {
+    --background: #ddddd9;
+    --secondary: #cad0da;
+    --text: #0d0d0d;
+    --placeholder: #9b9b9b;
+    --brand: #7a88a4;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.left-animated, .right-animated, .rotate-animated {
+    transition: transform 0.15s ease;
+}
+
+.left-animation:hover .left-animated {
+    transform: translateX(-0.25rem);
+}
+
+.right-animation:hover .right-animated {
+    transform: translateX(0.25rem);
+}
+
+.rotate-animation:hover .rotate-animated {
+    transform: rotate(45deg);
+}
