@@ -6,6 +6,11 @@ Run `pnpm install` to install and `pnpm start` to start.
 
 ## Credits
 Leaflet - I made this :)
+
+Proxies - Titanium Network
+
 dreamland.js - MercuryWorkshop
+
 chemicaljs - Nebelung
+
 Tailwind CSS - Tailwind Labs

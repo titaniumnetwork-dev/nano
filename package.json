@@ -11,8 +11,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "chemicaljs": "^1.2.5",
-        "dreamland": "^0.0.23-pre",
+        "chemicaljs": "^1.4.7",
+        "dreamland": "^0.0.24",
         "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
         "express": "^4.19.2",
         "rollup-plugin-typescript2": "^0.36.0",

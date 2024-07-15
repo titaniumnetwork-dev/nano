@@ -3,24 +3,17 @@
 @tailwind utilities;
 
 body[data-theme="dark"] {
-    --background: #23231f;
-    --secondary: #2a303a;
-    --text: #ececec;
-    --placeholder: #9b9b9b;
-    --brand: #6b7995;
-}
-
-body[data-theme="light"] {
-    --background: #ddddd9;
-    --secondary: #cad0da;
-    --text: #0d0d0d;
-    --placeholder: #9b9b9b;
-    --brand: #7a88a4;
+    --Crust: #11111b;
+    --Base: #1e1e2e;
+    --Surface0: #313244;
+    --Text: #cdd6f4;
+    --Subtext0: #a6adc8;
+    --Blue: #89b4fa;
 }
 
 body {
-    background: var(--background);
-    color: var(--text);
+    background: var(--Crust);
+    color: var(--Text);
 }
 
 body {
@@ -35,7 +28,9 @@ body {
     flex: 1;
 }
 
-.left-animated, .right-animated, .rotate-animated {
+.left-animated,
+.right-animated,
+.rotate-animated {
     transition: transform 0.15s ease;
 }
 
@@ -49,4 +44,28 @@ body {
 
 .rotate-animation:hover .rotate-animated {
     transform: rotate(45deg);
+}
+
+.iframe-transitions {
+    transition:
+        height 0.3s ease,
+        width 0.6s cubic-bezier(0.95, 0, 0.5, 1),
+        top 0.3s ease,
+        right 0.3s ease,
+        left 0.3s ease,
+        border-radius 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.iframe-sidebar-open {
+    @apply h-[calc(100%_-_4.25rem_-_0.5rem)] top-2 w-[calc(100%_-_16rem)] right-2 rounded-lg shadow bg-Base;
+}
+
+.sidebar {
+    transition: opacity 0.6s cubic-bezier(0.95, 0, 0.5, 1);
+}
+
+.sidebar-open {
+    opacity: 1;
 }

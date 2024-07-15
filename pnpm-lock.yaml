@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       chemicaljs:
-        specifier: ^1.2.5
-        version: 1.2.5(bufferutil@4.0.8)(esbuild@0.21.5)(typescript@5.5.3)(utf-8-validate@6.0.4)
+        specifier: ^1.4.7
+        version: 1.4.7(bufferutil@4.0.8)(esbuild@0.21.5)(typescript@5.5.3)(utf-8-validate@6.0.4)
       dreamland:
-        specifier: ^0.0.23-pre
-        version: 0.0.23-pre
+        specifier: ^0.0.24
+        version: 0.0.24
       dreamland-router:
         specifier: https://github.com/mercuryworkshop/dreamland-router
         version: https://codeload.github.com/mercuryworkshop/dreamland-router/tar.gz/4a5bb22dbaa1268159a8e3485200d1d7372483be
@@ -215,8 +215,8 @@ packages:
   '@mercuryworkshop/bare-mux@1.1.4':
     resolution: {integrity: sha512-mJPezqEpiKTCs+wu/3TowilnVXQgFs4SqoQnnbCbOc5cV6bDggaolKkyYjDnmOB9t/nptIIXDWDB31oS9vX9kA==}
 
-  '@mercuryworkshop/bare-mux@2.0.1':
-    resolution: {integrity: sha512-94YThllV9sWSb5hzIDg+U0JSNfFdkvOq6j5wwV1OON3izZhrKSsdDOkaywS5WP6HE/jm0/0ZYaYixbf8u3kjYg==}
+  '@mercuryworkshop/bare-mux@2.0.2':
+    resolution: {integrity: sha512-1rnqFfI29VXi3jrMbkotHV+NnafJ3tpTIuH3Ov/BtVAfZMNGcsCRr3dwEKRWc+mDb0tWdNWC0PnZghgfAlbr+A==}
 
   '@mercuryworkshop/epoxy-tls@2.0.6-1':
     resolution: {integrity: sha512-sirpgUiIO6gxjvoI+QDRebsWEgutHiMbV5ghx2Q39IkfGqYNFinaMIDZRno8yY4IZCxydf9KAo/V+1xEMwvJ+w==}
@@ -224,8 +224,14 @@ packages:
   '@mercuryworkshop/epoxy-transport@2.1.3':
     resolution: {integrity: sha512-cxuaPCVUmGnB1c/8cdoyhTIrZfL5feqH/sZRclkj8wFmrGz4PzzOHZRNMOrlzNoEiJDPYqHC4qJ6mNuiPC4vCw==}
 
+  '@mercuryworkshop/libcurl-transport@1.3.6':
+    resolution: {integrity: sha512-K4/TSfHlkjuzY6j0XXFmIbG8m3tpMoTxLga46fhmeuX8k3EJR/FVbW8JTXOD34Iofu0vCZuuY8n/ywNCcB6XjA==}
+
   '@mercuryworkshop/scramjet@1.0.2':
     resolution: {integrity: sha512-65k+TXYlMAnqTrcTyVlXyG+CVymOSHMW4a8ofJtX6yHDKmWGHL4LVzls+ukoTqth6JyqOk7OoT3iQdufZMoE7g==}
+
+  '@mercuryworkshop/wisp-js@0.1.0':
+    resolution: {integrity: sha512-KhSViqQmRr7cFKi4zb/VawYikeJlRbICvh6mBEAvGBhK4SAX/3xhhRNgsdw/nVEykU9oBhY7qR2SPxG6Up7jFg==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -335,8 +341,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@titaniumnetwork-dev/ultraviolet@3.2.1':
-    resolution: {integrity: sha512-J8WsR0LzZp9jFu9ghEpczRpzK9dzdlB5/DjvsCvcD1zJSP17DC3+pVhQaGvLCBqHw+KS06srhFLJMkZqg8I51A==}
+  '@titaniumnetwork-dev/ultraviolet@3.2.2':
+    resolution: {integrity: sha512-W5QMiSkG46JudHJRnyMxuXQXyCQHp+K3gsb0ZH+GM1jaufVawkRuh//37M0EYoI8xIiYGYT4rsRX1bKrHR937Q==}
 
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -532,8 +538,8 @@ packages:
   caniuse-lite@1.0.30001641:
     resolution: {integrity: sha512-Phv5thgl67bHYo1TtMY/MurjkHhV4EDaCosezRXgZ8jzA/Ub+wjxAvbGvjoFENStinwi5kCyOYV3mi5tOGykwA==}
 
-  chemicaljs@1.2.5:
-    resolution: {integrity: sha512-MHCs5CDzzwKwdT9ce2ZRdaod0+LoDmtbK7bkyl1I0dfg9Xt8rFeR+dyum4JnYJPHXfwgP86KgHTvSkDEVakT6Q==}
+  chemicaljs@1.4.7:
+    resolution: {integrity: sha512-u/cPa7/lVaRS7D/XrgMGDQ7uentwiZ6w4PCfopyxGd7ob6foZd7d8lWBb1F6eInaK3yHS4cjhzX50ej3eEimOA==}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -701,8 +707,8 @@ packages:
     resolution: {tarball: https://codeload.github.com/mercuryworkshop/dreamland-router/tar.gz/4a5bb22dbaa1268159a8e3485200d1d7372483be}
     version: 2.0.0
 
-  dreamland@0.0.23-pre:
-    resolution: {integrity: sha512-x8v51a+cm8sQ3DqCXCmz0ejbURtMgpk+fCD+cw3fxFxCBDtTTBL2vcSwi/WrVJ49IOnVg6z7LRFdZjz1S8CpJg==}
+  dreamland@0.0.24:
+    resolution: {integrity: sha512-yHRqSr5sfQhMZTiVAlRrXB3WmxjCfuCg4RZbnD4uaXekJvqagmhmjLervW1ke2Z0NyQTkrrDXHUgnwy9UySnNA==}
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -1026,6 +1032,9 @@ packages:
   keyv-lru-files@https://codeload.github.com/holy-unblocker/keyv-lru-files/tar.gz/dceb102630357eda76317f9005905bbc5e6521e7:
     resolution: {tarball: https://codeload.github.com/holy-unblocker/keyv-lru-files/tar.gz/dceb102630357eda76317f9005905bbc5e6521e7}
     version: 1.3.1
+
+  libcurl.js@0.6.10:
+    resolution: {integrity: sha512-GDyxCRi7+R7XFhcCRFAsNYxg3x91LiwiBISo+pWfUXfgO45J/9ZWcHqjKQg8/FbWHRkV1wwSCyPOZ8pLlbdivg==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -1816,9 +1825,6 @@ packages:
   wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
 
-  wisp-server-node@1.1.0:
-    resolution: {integrity: sha512-kJcuDIZZfV/HOkTepoVLfwzP7IieE0GfU57UTe8z2IwNRp+YbL12q5xsImcMNEYb9QeP/8loXiyBKXdZ+vojow==}
-
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
@@ -1957,7 +1963,7 @@ snapshots:
       '@types/uuid': 9.0.8
       uuid: 9.0.1
 
-  '@mercuryworkshop/bare-mux@2.0.1': {}
+  '@mercuryworkshop/bare-mux@2.0.2': {}
 
   '@mercuryworkshop/epoxy-tls@2.0.6-1': {}
 
@@ -1965,6 +1971,16 @@ snapshots:
     dependencies:
       '@mercuryworkshop/epoxy-tls': 2.0.6-1
       esbuild-plugin-umd-wrapper: 2.0.0
+      rollup: 4.18.1
+      rollup-plugin-node-resolve: 5.2.0(rollup@4.18.1)
+      rollup-plugin-typescript2: 0.36.0(rollup@4.18.1)(typescript@5.5.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@mercuryworkshop/libcurl-transport@1.3.6(typescript@5.5.3)':
+    dependencies:
+      esbuild-plugin-umd-wrapper: 2.0.0
+      libcurl.js: 0.6.10
       rollup: 4.18.1
       rollup-plugin-node-resolve: 5.2.0(rollup@4.18.1)
       rollup-plugin-typescript2: 0.36.0(rollup@4.18.1)(typescript@5.5.3)
@@ -1985,6 +2001,13 @@ snapshots:
       meriyah: 4.5.0
     transitivePeerDependencies:
       - esbuild
+
+  '@mercuryworkshop/wisp-js@0.1.0(utf-8-validate@6.0.4)':
+    dependencies:
+      bufferutil: 4.0.8
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+    transitivePeerDependencies:
+      - utf-8-validate
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -2066,7 +2089,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.1':
     optional: true
 
-  '@titaniumnetwork-dev/ultraviolet@3.2.1': {}
+  '@titaniumnetwork-dev/ultraviolet@3.2.2': {}
 
   '@tootallnate/once@1.1.2':
     optional: true
@@ -2296,15 +2319,16 @@ snapshots:
 
   caniuse-lite@1.0.30001641: {}
 
-  chemicaljs@1.2.5(bufferutil@4.0.8)(esbuild@0.21.5)(typescript@5.5.3)(utf-8-validate@6.0.4):
+  chemicaljs@1.4.7(bufferutil@4.0.8)(esbuild@0.21.5)(typescript@5.5.3)(utf-8-validate@6.0.4):
     dependencies:
-      '@mercuryworkshop/bare-mux': 2.0.1
+      '@mercuryworkshop/bare-mux': 2.0.2
       '@mercuryworkshop/epoxy-transport': 2.1.3(typescript@5.5.3)
+      '@mercuryworkshop/libcurl-transport': 1.3.6(typescript@5.5.3)
       '@mercuryworkshop/scramjet': 1.0.2(esbuild@0.21.5)
-      '@titaniumnetwork-dev/ultraviolet': 3.2.1
+      '@mercuryworkshop/wisp-js': 0.1.0(utf-8-validate@6.0.4)
+      '@titaniumnetwork-dev/ultraviolet': 3.2.2
       express: 4.19.2
       rammerhead: https://github.com/chemicaljs/chemical/raw/main/rammerhead.tgz(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-      wisp-server-node: 1.1.0
     transitivePeerDependencies:
       - bluebird
       - bufferutil
@@ -2447,7 +2471,7 @@ snapshots:
 
   dreamland-router@https://codeload.github.com/mercuryworkshop/dreamland-router/tar.gz/4a5bb22dbaa1268159a8e3485200d1d7372483be: {}
 
-  dreamland@0.0.23-pre: {}
+  dreamland@0.0.24: {}
 
   eastasianwidth@0.2.0: {}
 
@@ -2842,6 +2866,8 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+
+  libcurl.js@0.6.10: {}
 
   lilconfig@2.1.0: {}
 
@@ -3667,6 +3693,7 @@ snapshots:
   utf-8-validate@6.0.4:
     dependencies:
       node-gyp-build: 4.8.1
+    optional: true
 
   util-deprecate@1.0.2: {}
 
@@ -3699,12 +3726,6 @@ snapshots:
     dependencies:
       string-width: 4.2.3
     optional: true
-
-  wisp-server-node@1.1.0:
-    dependencies:
-      bufferutil: 4.0.8
-      utf-8-validate: 6.0.4
-      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
   wrap-ansi@7.0.0:
     dependencies:

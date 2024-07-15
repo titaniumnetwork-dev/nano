@@ -4,11 +4,12 @@ export default {
     theme: {
         extend: {
             colors: {
-                background: "var(--background)",
-                secondary: "var(--secondary)",
-                text: "var(--text)",
-                placeholder: "var(--placeholder)",
-                brand: "var(--brand)"
+                Crust: "var(--Crust)",
+                Base: "var(--Base)",
+                Surface0: "var(--Surface0)",
+                Text: "var(--Text)",
+                Subtext0: "var(--Subtext0)",
+                Blue: "var(--Blue)"
             },
         },
     },
