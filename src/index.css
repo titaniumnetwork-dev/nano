@@ -30,7 +30,8 @@ body {
 
 .left-animated,
 .right-animated,
-.rotate-animated {
+.rotate-animated,
+.sidebar-animated {
     transition: transform 0.15s ease;
 }
 
@@ -44,6 +45,10 @@ body {
 
 .rotate-animation:hover .rotate-animated {
     transform: rotate(45deg);
+}
+
+.sidebar-animation:hover .sidebar-animated {
+    transform: scale(1.2);
 }
 
 .iframe-transitions {
@@ -68,4 +73,22 @@ body {
 
 .sidebar-open {
     opacity: 1;
+}
+
+body[data-dragging="true"],
+body[data-dragging="true"] * {
+    cursor: grabbing !important;
+}
+
+.dragging {
+    opacity: 0 !important;
+}
+
+.tab[data-current="true"] {
+    @apply bg-Surface0 z-50;
+}
+
+body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
+    transition: background 0.15s ease;
+    @apply hover:bg-Base;
 }
