@@ -11,6 +11,15 @@ body[data-theme="dark"] {
     --Blue: #89b4fa;
 }
 
+body[data-theme="green"] {
+    --Crust: #212121;
+    --Base: #2f2f2f;
+    --Surface0: #444444;
+    --Text: #ececec;
+    --Subtext0: #9b9b9b;
+    --Blue: #4CAF50;
+}
+
 body {
     background: var(--Crust);
     color: var(--Text);
