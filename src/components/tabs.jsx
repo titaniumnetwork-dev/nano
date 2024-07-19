@@ -57,7 +57,7 @@ const Tabs = function () {
     };
     return (
         <div
-            class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
+            class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-4 sidebar"
             class:sidebar-open={use(this.sidebar)}
         >
             <button
@@ -72,7 +72,7 @@ const Tabs = function () {
                     tabs.map((tab, index) => (
                         <button
                             on:click={() => setCurrent(index)}
-                            class="bg-Crust w-full h-10 rounded-xl text-left px-4 shrink-0 tab select-none"
+                            class="tab bg-Crust w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
                             data-current={tab.current}
                         >
                             {tab.title}

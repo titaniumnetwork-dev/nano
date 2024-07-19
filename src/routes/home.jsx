@@ -6,7 +6,7 @@ import RotateCW from "../icons/rotate-cw";
 import ViewSidebar from "../icons/view-sidebar";
 
 const Home = function () {
-    this.theme = "dark";
+    this.theme = "mocha";
     this.url = "";
     this.iframe = null;
     this.search = null;
@@ -91,7 +91,7 @@ const Home = function () {
             )}
 
             <div class="flex justify-center fixed bottom-0 right-0 left-0">
-                <div class="flex items-center flex-1 gap-2 bg-Base rounded-[26px] p-1.5 my-2 mx-5 max-w-3xl">
+                <div class="flex items-center flex-1 gap-2 bg-Base rounded-[26px] p-1.5 my-2 mx-5 max-w-3xl shadow">
                     <button
                         on:click={() => (this.sidebar = !this.sidebar)}
                         aria-label="Toggle Sidebar"

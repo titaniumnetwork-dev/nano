@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body[data-theme="dark"] {
+body[data-theme="mocha"] {
     --Crust: #11111b;
     --Base: #1e1e2e;
     --Surface0: #313244;
@@ -11,13 +11,31 @@ body[data-theme="dark"] {
     --Blue: #89b4fa;
 }
 
-body[data-theme="green"] {
-    --Crust: #212121;
-    --Base: #2f2f2f;
-    --Surface0: #444444;
-    --Text: #ececec;
-    --Subtext0: #9b9b9b;
-    --Blue: #4CAF50;
+body[data-theme="macchiato"] {
+    --Crust: #181926;
+    --Base: #24273a;
+    --Surface0: #363a4f;
+    --Text: #cad3f5;
+    --Subtext0: #a5adcb;
+    --Blue: #8aadf4;
+}
+
+body[data-theme="frappe"] {
+    --Crust: #232634;
+    --Base: #303446;
+    --Surface0: #414559;
+    --Text: #c6d0f5;
+    --Subtext0: #a5adce;
+    --Blue: #8caaee;
+}
+
+body[data-theme="latte"] {
+    --Crust: #dce0e8;
+    --Base: #eff1f5;
+    --Surface0: #ccd0da;
+    --Text: #4c4f69;
+    --Subtext0: #6c6f85;
+    --Blue: #1e66f5;
 }
 
 body {
@@ -94,10 +112,37 @@ body[data-dragging="true"] * {
 }
 
 .tab[data-current="true"] {
-    @apply bg-Surface0 z-50;
+    @apply bg-Surface0 z-50 shadow;
 }
 
 body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
     transition: background 0.15s ease;
     @apply hover:bg-Base;
+}
+
+@starting-style {
+    .tab {
+        opacity: 0;
+        height: 0;
+        color: transparent;
+    }
+}
+
+.tab {
+    transform-origin: center;
+    transition:
+        opacity 0.3s,
+        height 0.3s,
+        color 1.2s,
+        display 0.3s allow-discrete;
+}
+
+.tabs::-webkit-scrollbar {
+    width: 16px;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+    background: var(--Base);
+    background-clip: padding-box;
+    border-left: 8px solid transparent;
 }
