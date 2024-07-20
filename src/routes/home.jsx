@@ -142,7 +142,7 @@ const Home = function () {
                         bind:this={use(this.search)}
                         on:keydown={searchKeydown}
                         placeholder="Search or Type URL"
-                        class="flex-1 border-0 bg-transparent outline-0 h-10 w-full placeholder:select-none placeholder:text-Subtext0"
+                        class="flex-1 border-0 bg-transparent outline-none h-10 w-full placeholder:select-none placeholder:text-Subtext0"
                     />
                     <button
                         on:click={back}
