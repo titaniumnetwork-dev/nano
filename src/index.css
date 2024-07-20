@@ -44,7 +44,12 @@ body[data-theme="green"] {
     --Surface0: #444444;
     --Text: #ececec;
     --Subtext0: #9b9b9b;
-    --Blue: #4CAF50;
+    --Blue: #4caf50;
+}
+
+body[data-theme-changing="ture"],
+body[data-theme-changing="ture"] * {
+    transition: all 1200ms !important;
 }
 
 body {

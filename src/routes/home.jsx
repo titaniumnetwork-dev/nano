@@ -7,12 +7,15 @@ import RotateCW from "../icons/rotate-cw";
 import ViewSidebar from "../icons/view-sidebar";
 
 const Home = function () {
-    this.theme = "mocha";
-    this.url = "";
+    this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
     this.sidebar = false;
     this.tabs = [
+        {
+            title: "New Tab",
+            current: true,
+        },
         {
             title: "Arc",
             current: false,
@@ -25,7 +28,7 @@ const Home = function () {
         },
         {
             title: "Example",
-            current: true,
+            current: false,
             url: "https://example.com/",
         },
     ];
@@ -165,13 +168,25 @@ const Home = function () {
                     >
                         <RotateCW class="rotate-animated" />
                     </button>
+                    {/*
+                    <button on:click={() => (this.theme = "mocha")}>
+                        Set Mocha
+                    </button>
+                    <button on:click={() => (this.theme = "macchiato")}>
+                        Set Macchiato
+                    </button>
+                    <button on:click={() => (this.theme = "frappe")}>
+                        Set Frappe
+                    </button>
+                    <button on:click={() => (this.theme = "latte")}>
+                        Set Latte
+                    </button>
+                    <button on:click={() => (this.theme = "green")}>
+                        Set Green
+                    </button>
+                    */}
                 </div>
             </div>
-            {/*
-            <p>Theme is {use(this.theme)}</p>
-            <button on:click={()=> this.theme = "dark"}>Set Dark</button>
-            <button on:click={()=> this.theme = "light"}>Set Light</button>
-            */}
         </div>
     );
 };
