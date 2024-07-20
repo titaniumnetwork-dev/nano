@@ -68,7 +68,7 @@ const Tabs = function () {
     };
     return (
         <div
-            class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-4 sidebar"
+            class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
             class:sidebar-open={use(this.sidebar)}
         >
             <button
