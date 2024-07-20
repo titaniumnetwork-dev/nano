@@ -47,9 +47,9 @@ body[data-theme="green"] {
     --Blue: #4caf50;
 }
 
-body[data-theme-changing="ture"],
-body[data-theme-changing="ture"] * {
-    transition: all 1200ms !important;
+body[data-theme-changing="true"],
+body[data-theme-changing="true"] * {
+    transition: background 600ms, color 600ms !important;
 }
 
 body {

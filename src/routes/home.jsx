@@ -114,6 +114,18 @@ const Home = function () {
         }
     };
 
+    let themeChangingTimeout;
+    const changeTheme = (newTheme) => {
+        if (typeof themeChangingTimeout === "number") {
+            clearTimeout(themeChangingTimeout);
+        }
+        document.body.dataset.themeChanging = "true";
+        themeChangingTimeout = setTimeout(() => {
+            document.body.dataset.themeChanging = "false";
+        }, 600);
+        this.theme = newTheme;
+    };
+
     return (
         <div>
             <Head bind:theme={use(this.theme)} />
@@ -169,19 +181,19 @@ const Home = function () {
                         <RotateCW class="rotate-animated" />
                     </button>
                     {/*
-                    <button on:click={() => (this.theme = "mocha")}>
+                    <button on:click={() => changeTheme("mocha")}>
                         Set Mocha
                     </button>
-                    <button on:click={() => (this.theme = "macchiato")}>
+                    <button on:click={() => changeTheme("macchiato")}>
                         Set Macchiato
                     </button>
-                    <button on:click={() => (this.theme = "frappe")}>
+                    <button on:click={() => changeTheme("frappe")}>
                         Set Frappe
                     </button>
-                    <button on:click={() => (this.theme = "latte")}>
+                    <button on:click={() => changeTheme("latte")}>
                         Set Latte
                     </button>
-                    <button on:click={() => (this.theme = "green")}>
+                    <button on:click={() => changeTheme("green")}>
                         Set Green
                     </button>
                     */}
