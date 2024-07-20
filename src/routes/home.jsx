@@ -29,11 +29,11 @@ const Home = function () {
             url: "https://example.com/",
         },
     ];
-    this.current = this.tabs.filter((tab) => tab.current)[0];
+    this.current = this.tabs.findIndex((tab) => tab.current);
     this.currentHasURL = false;
 
     useChange(this.current, () => {
-        this.currentHasURL = this.current.hasOwnProperty("url");
+        this.currentHasURL = this.tabs[this.current].hasOwnProperty("url");
     });
 
     const createIFrame = async (tab) => {
@@ -48,36 +48,55 @@ const Home = function () {
 
     const searchKeydown = async (e) => {
         if (e.key == "Enter" && window.chemicalLoaded && e.target.value) {
-            this.current.url = await window.chemicalEncode(e.target.value);
+            this.tabs[this.current].url = e.target.value
 
-            if (this.current.hasOwnProperty("iframe")) {
-                this.current.iframe.src = this.current.url;
+            if (this.tabs[this.current].hasOwnProperty("iframe")) {
+                this.tabs[this.current].iframe.src =
+                    this.tabs[this.current].url;
             } else {
-                this.current.iframe = createIFrame(this.current);
+                this.tabs[this.current].iframe = await createIFrame(
+                    this.tabs[this.current],
+                );
+                this.currentHasURL = true;
             }
         }
     };
 
     const back = () => {
-        if (this.current && this.current.hasOwnProperty("iframe") && this.current.iframe.contentWindow) {
-            if (this.current.iframe.contentWindow.navigation.canGoBack) {
-                this.current.iframe.contentWindow.history.back();
+        if (
+            this.tabs[this.current] &&
+            this.tabs[this.current].hasOwnProperty("iframe") &&
+            this.tabs[this.current].iframe.contentWindow
+        ) {
+            if (
+                this.tabs[this.current].iframe.contentWindow.navigation
+                    .canGoBack
+            ) {
+                this.tabs[this.current].iframe.contentWindow.history.back();
             }
         }
     };
 
     const forward = () => {
-        if (this.current && this.current.hasOwnProperty("iframe") && this.current.iframe.contentWindow) {
-            this.current.iframe.contentWindow.history.forward();
+        if (
+            this.tabs[this.current] &&
+            this.tabs[this.current].hasOwnProperty("iframe") &&
+            this.tabs[this.current].iframe.contentWindow
+        ) {
+            this.tabs[this.current].iframe.contentWindow.history.forward();
         }
     };
 
     const reload = () => {
-        if (this.current && this.current.hasOwnProperty("iframe") && this.current.iframe.contentWindow) {
+        if (
+            this.tabs[this.current] &&
+            this.tabs[this.current].hasOwnProperty("iframe") &&
+            this.tabs[this.current].iframe.contentWindow
+        ) {
             try {
-                this.current.iframe.contentWindow.location.reload();
+                this.tabs[this.current].iframe.contentWindow.location.reload();
             } catch {
-                this.current.iframe.src += "";
+                this.tabs[this.current].iframe.src += "";
             }
         }
     };

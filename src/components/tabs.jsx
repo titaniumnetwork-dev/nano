@@ -49,7 +49,7 @@ const Tabs = function () {
 
         this.tabs = [createdTab, ...this.tabs];
 
-        this.current = this.tabs[0];
+        this.current = 0;
     };
 
     const setCurrent = (index) => {
@@ -60,10 +60,10 @@ const Tabs = function () {
             }
         }
 
+        this.current = index;
         this.tabs[index].current = true;
-        this.current = this.tabs[index];
-        if (this.current.hasOwnProperty("iframe")) {
-            this.current.iframe.dataset.current = "true";
+        if (this.tabs[this.current].hasOwnProperty("iframe")) {
+            this.tabs[this.current].iframe.dataset.current = "true";
         }
     };
     return (
