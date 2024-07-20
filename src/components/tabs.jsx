@@ -82,7 +82,6 @@ const Tabs = function () {
                 {use(this.tabs, (tabs) =>
                     tabs.map((tab, index) => (
                         <button
-                            on:click={() => setCurrent(index)}
                             class="tab bg-Crust w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
                             data-current={tab.current}
                         >
