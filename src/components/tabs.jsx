@@ -37,23 +37,34 @@ const Tabs = function () {
 
         for (let tab of this.tabs) {
             tab.current = false;
+            if (tab.hasOwnProperty("iframe")) {
+                tab.iframe.dataset.current = "false";
+            }
         }
 
-        this.tabs = [
-            {
-                title: "New Tab",
-                current: true,
-            },
-            ...this.tabs,
-        ];
+        const createdTab = {
+            title: "New Tab",
+            current: true,
+        };
+
+        this.tabs = [createdTab, ...this.tabs];
+
+        this.current = this.tabs[0];
     };
 
     const setCurrent = (index) => {
         for (let tab of this.tabs) {
             tab.current = false;
+            if (tab.hasOwnProperty("iframe")) {
+                tab.iframe.dataset.current = "false";
+            }
         }
 
         this.tabs[index].current = true;
+        this.current = this.tabs[index];
+        if (this.current.hasOwnProperty("iframe")) {
+            this.current.iframe.dataset.current = "true";
+        }
     };
     return (
         <div

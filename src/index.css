@@ -38,6 +38,15 @@ body[data-theme="latte"] {
     --Blue: #1e66f5;
 }
 
+body[data-theme="green"] {
+    --Crust: #212121;
+    --Base: #2f2f2f;
+    --Surface0: #444444;
+    --Text: #ececec;
+    --Subtext0: #9b9b9b;
+    --Blue: #4CAF50;
+}
+
 body {
     background: var(--Crust);
     color: var(--Text);
@@ -145,4 +154,8 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
     background: var(--Base);
     background-clip: padding-box;
     border-left: 8px solid transparent;
+}
+
+.window[data-current="false"] {
+    display: none;
 }

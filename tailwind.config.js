@@ -9,9 +9,10 @@ export default {
                 Surface0: "var(--Surface0)",
                 Text: "var(--Text)",
                 Subtext0: "var(--Subtext0)",
-                Blue: "var(--Blue)"
+                Blue: "var(--Blue)",
             },
         },
     },
+    safelist: ["hidden"],
     plugins: [],
 };
