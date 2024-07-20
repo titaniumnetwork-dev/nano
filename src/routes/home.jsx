@@ -32,6 +32,16 @@ const Home = function () {
     this.current = this.tabs.findIndex((tab) => tab.current);
     this.currentHasURL = false;
 
+    useChange([this.search, this.current], () => {
+        if (this.search) {
+            if (this.tabs[this.current].hasOwnProperty("url")) {
+                this.search.value = this.tabs[this.current].url;
+            } else {
+                this.search.value = "";
+            }
+        }
+    });
+
     useChange(this.current, () => {
         this.currentHasURL = this.tabs[this.current].hasOwnProperty("url");
     });
@@ -48,7 +58,7 @@ const Home = function () {
 
     const searchKeydown = async (e) => {
         if (e.key == "Enter" && window.chemicalLoaded && e.target.value) {
-            this.tabs[this.current].url = e.target.value
+            this.tabs[this.current].url = e.target.value;
 
             if (this.tabs[this.current].hasOwnProperty("iframe")) {
                 this.tabs[this.current].iframe.src =
@@ -112,6 +122,8 @@ const Home = function () {
             />
             <Windows
                 bind:windows={use(this.windows)}
+                bind:current={use(this.current)}
+                bind:search={use(this.search)}
                 bind:currentHasURL={use(this.currentHasURL)}
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}

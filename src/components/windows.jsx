@@ -4,6 +4,20 @@ const Windows = function () {
         newIFrame.src = await chemicalEncode(tab.url);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = tab.current;
+        newIFrame.addEventListener("load", (e) => {
+            tab.url = window.__uv$config.decodeUrl(
+                e.target.contentWindow.location.pathname.split(
+                    window.__uv$config.prefix,
+                )[1],
+            );
+            if (this.search) {
+                if (this.tabs[this.current].hasOwnProperty("url")) {
+                    this.search.value = this.tabs[this.current].url;
+                } else {
+                    this.search.value = "";
+                }
+            }
+        });
         this.windows.appendChild(newIFrame);
 
         return newIFrame;
@@ -21,7 +35,7 @@ const Windows = function () {
     return (
         <div
             bind:this={use(this.windows)}
-            class="fixed top-0 right-0 bg-Base w-full h-[calc(100%_-_4.25rem)] flex flex-col justify-center items-center select-none overflow-hidden iframe-transitions"
+            class="fixed top-0 right-0 bg-Crust w-full h-[calc(100%_-_4.25rem)] flex flex-col justify-center items-center select-none overflow-hidden iframe-transitions"
             class:iframe-sidebar-open={use(this.sidebar)}
         >
             <div class="block" class:hidden={use(this.currentHasURL)}>
