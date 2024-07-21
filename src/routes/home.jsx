@@ -126,6 +126,20 @@ const Home = function () {
         this.theme = newTheme;
     };
 
+    setInterval(() => {
+        if (this.tabs[this.current].hasOwnProperty("iframe")) {
+            let newLocation =
+                this.tabs[this.current].iframe.contentWindow.location;
+            let decodedLocation = window.__uv$config.decodeUrl(
+                newLocation.pathname.split(window.__uv$config.prefix)[1],
+            );
+
+            if (decodedLocation !== this.tabs[this.current].url) {
+                this.search.value = decodedLocation;
+            }
+        }
+    }, 1000);
+
     return (
         <div>
             <Head bind:theme={use(this.theme)} />
