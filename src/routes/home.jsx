@@ -5,35 +5,25 @@ import ArrowRight from "../icons/arrow-right";
 import ArrowLeft from "../icons/arrow-left";
 import RotateCW from "../icons/rotate-cw";
 import ViewSidebar from "../icons/view-sidebar";
+import { searchURL } from "../util/searchURL";
 
 const Home = function () {
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
-    this.sidebar = false;
+    this.sidebar = localStorage.getItem("@nano/sidebar") == "true" || false;
     this.tabs = [
         {
             title: "New Tab",
             current: true,
         },
-        {
-            title: "Arc",
-            current: false,
-            url: "https://arc.net/",
-        },
-        {
-            title: "GitHub",
-            current: false,
-            url: "https://github.com/",
-        },
-        {
-            title: "Example",
-            current: false,
-            url: "https://example.com/",
-        },
     ];
     this.current = this.tabs.findIndex((tab) => tab.current);
     this.currentHasURL = false;
+
+    useChange(this.sidebar, () => {
+        localStorage.setItem("@nano/sidebar", String(this.sidebar))
+    });
 
     useChange([this.search, this.current], () => {
         if (this.search) {
@@ -51,7 +41,7 @@ const Home = function () {
 
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
-        newIFrame.src = await chemicalEncode(tab.url);
+        newIFrame.src = await searchURL(tab.url);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = tab.current;
         this.windows.appendChild(newIFrame);
@@ -64,8 +54,9 @@ const Home = function () {
             this.tabs[this.current].url = e.target.value;
 
             if (this.tabs[this.current].hasOwnProperty("iframe")) {
-                this.tabs[this.current].iframe.src =
-                    this.tabs[this.current].url;
+                this.tabs[this.current].iframe.src = await searchURL(
+                    this.tabs[this.current].url,
+                );
             } else {
                 this.tabs[this.current].iframe = await createIFrame(
                     this.tabs[this.current],
@@ -82,6 +73,7 @@ const Home = function () {
             this.tabs[this.current].iframe.contentWindow
         ) {
             if (
+                !this.tabs[this.current].iframe.contentWindow.navigation ||
                 this.tabs[this.current].iframe.contentWindow.navigation
                     .canGoBack
             ) {
@@ -130,12 +122,23 @@ const Home = function () {
         if (this.tabs[this.current].hasOwnProperty("iframe")) {
             let newLocation =
                 this.tabs[this.current].iframe.contentWindow.location;
-            let decodedLocation = window.__uv$config.decodeUrl(
-                newLocation.pathname.split(window.__uv$config.prefix)[1],
-            );
+            if (!newLocation.href.startsWith("about:")) {
+                let decodedLocation = window.__uv$config.decodeUrl(
+                    newLocation.pathname.split(window.__uv$config.prefix)[1],
+                );
 
-            if (decodedLocation !== this.tabs[this.current].url) {
-                this.search.value = decodedLocation;
+                if (decodedLocation !== this.tabs[this.current].url) {
+                    this.tabs[this.current].url = decodedLocation;
+                    this.search.value = decodedLocation;
+                }
+
+                let newTitle =
+                    this.tabs[this.current].iframe.contentWindow.document.title;
+                if (newTitle !== this.tabs[this.current].title) {
+                    this.tabs[this.current].title =
+                        newTitle || this.tabs[this.current].url;
+                    this.tabs = [...this.tabs];
+                }
             }
         }
     }, 1000);

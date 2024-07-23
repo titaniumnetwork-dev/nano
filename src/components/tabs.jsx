@@ -32,7 +32,6 @@ const Tabs = function () {
     };
 
     const newTab = () => {
-        //Do not remove. Fixes tab disappearing when first tab is moved.
         this.tabs = [...this.tabs];
 
         for (let tab of this.tabs) {
@@ -73,7 +72,7 @@ const Tabs = function () {
         >
             <button
                 on:click={() => newTab()}
-                class="bg-Base w-full h-10 rounded-xl text-left px-4 shrink-0 flex items-center gap-1 select-none"
+                class="bg-Base w-full h-10 rounded-xl text-left px-4 shrink-0 flex items-center gap-1 select-none whitespace-nowrap overflow-hidden text-ellipsis"
             >
                 <Plus />
                 <span>New Tab</span>
@@ -82,7 +81,7 @@ const Tabs = function () {
                 {use(this.tabs, (tabs) =>
                     tabs.map((tab, index) => (
                         <button
-                            class="tab w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
+                            class="tab w-full h-10 rounded-xl text-left px-4 shrink-0 select-none whitespace-nowrap overflow-hidden text-ellipsis"
                             data-current={tab.current}
                         >
                             {tab.title}

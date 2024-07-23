@@ -1,7 +1,9 @@
+import { searchURL } from "../util/searchURL";
+
 const Windows = function () {
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
-        newIFrame.src = await chemicalEncode(tab.url);
+        newIFrame.src = await searchURL(tab.url);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = tab.current;
         newIFrame.addEventListener("load", (e) => {
@@ -16,6 +18,12 @@ const Windows = function () {
                 } else {
                     this.search.value = "";
                 }
+            }
+
+            let newTitle = e.target.contentWindow.document.title;
+            if (newTitle !== tab.title) {
+                tab.title = newTitle || tab.url;
+                this.tabs = [...this.tabs];
             }
         });
         this.windows.appendChild(newIFrame);
