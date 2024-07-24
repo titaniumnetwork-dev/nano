@@ -1,6 +1,6 @@
 {
     "name": "nano",
-    "description": "Browse the internet securely and privately.",
+    "description": "A minimalist web proxy built to be simple yet powerful.",
     "author": "Leaflet",
     "version": "0.0.1",
     "type": "module",
