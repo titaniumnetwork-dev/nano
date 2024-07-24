@@ -35,8 +35,16 @@ Run `pnpm run dev` to run the app in development mode.
 
 ## Credits
 
+Ultraviolet - Titanium Network
+
 dreamland.js - MercuryWorkshop
 
 chemicaljs - Nebelung
 
 Tailwind CSS - Tailwind Labs
+
+Icons - Feather Icons & Material Symbols
+
+## License
+
+Nano uses the AGPL-3.0 license.
