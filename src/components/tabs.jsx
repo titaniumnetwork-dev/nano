@@ -109,7 +109,9 @@ const Tabs = function () {
                 <div class="h-4 w-4 rounded-full flex justify-center items-center">
                     <Plus />
                 </div>
-                <span class="whitespace-nowrap overflow-hidden text-ellipsis">New Tab</span>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis">
+                    New Tab
+                </span>
             </button>
             <div class="flex flex-col gap-2 overflow-y-auto tabs">
                 {use(this.tabs, (tabs) =>

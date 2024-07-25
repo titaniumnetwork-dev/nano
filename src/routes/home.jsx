@@ -42,7 +42,7 @@ const Home = function () {
         const newIFrame = document.createElement("iframe");
         newIFrame.src = await searchURL(tab.url);
         newIFrame.classList = "window h-full w-full";
-        newIFrame.dataset.current = "true"
+        newIFrame.dataset.current = "true";
         this.windows.appendChild(newIFrame);
 
         return newIFrame;

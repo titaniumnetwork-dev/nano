@@ -5,7 +5,7 @@ const Windows = function () {
         for (let tab of [...document.querySelectorAll(".tab")]) {
             tab.dispatchEvent(new Event("nanoUpdateTitle"));
         }
-    }
+    };
 
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
@@ -40,7 +40,10 @@ const Windows = function () {
     window.addEventListener("chemicalLoaded", async () => {
         setTimeout(async () => {
             for (let tab of this.tabs) {
-                if (tab.hasOwnProperty("url") && !tab.hasOwnProperty("iframe")) {
+                if (
+                    tab.hasOwnProperty("url") &&
+                    !tab.hasOwnProperty("iframe")
+                ) {
                     tab.iframe = await createIFrame(tab);
                 }
             }

@@ -49,7 +49,9 @@ body[data-theme="green"] {
 
 body[data-theme-changing="true"],
 body[data-theme-changing="true"] * {
-    transition: background 600ms, color 600ms !important;
+    transition:
+        background 600ms,
+        color 600ms !important;
 }
 
 body {
@@ -169,6 +171,7 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
     transition: opacity 0.15s ease;
 }
 
-body:not([data-dragging="true"]) .tab:hover .tab-close, .tab[data-current="true"] .tab-close {
+body:not([data-dragging="true"]) .tab:hover .tab-close,
+.tab[data-current="true"] .tab-close {
     @apply opacity-100;
 }
