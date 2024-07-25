@@ -3,13 +3,15 @@
     "description": "A minimalist web proxy built to be simple yet powerful.",
     "author": "Leaflet",
     "version": "0.0.1",
-    "license":"AGPL-3.0-only",
+    "license": "AGPL-3.0-only",
     "type": "module",
     "scripts": {
         "start": "node index.js",
         "build": "vite build",
         "dev": "vite",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "update": "npx npm-check-updates -u && npm i",
+        "revert": "git reset HEAD --hard && git clean -fd"
     },
     "dependencies": {
         "chemicaljs": "^1.4.9",
