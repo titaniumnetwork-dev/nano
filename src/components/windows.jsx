@@ -1,6 +1,12 @@
 import { searchURL } from "../util/searchURL";
 
 const Windows = function () {
+    const updateTitles = () => {
+        for (let tab of [...document.querySelectorAll(".tab")]) {
+            tab.dispatchEvent(new Event("nanoUpdateTitle"));
+        }
+    }
+
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
         newIFrame.src = await searchURL(tab.url);
@@ -23,7 +29,7 @@ const Windows = function () {
             let newTitle = e.target.contentWindow.document.title;
             if (newTitle !== tab.title) {
                 tab.title = newTitle || tab.url;
-                this.tabs = [...this.tabs];
+                updateTitles();
             }
         });
         this.windows.appendChild(newIFrame);

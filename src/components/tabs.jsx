@@ -79,14 +79,17 @@ const Tabs = function () {
             </button>
             <div class="flex flex-col gap-2 overflow-y-auto tabs">
                 {use(this.tabs, (tabs) =>
-                    tabs.map((tab, index) => (
-                        <button
-                            class="tab w-full h-10 rounded-xl text-left px-4 shrink-0 select-none whitespace-nowrap overflow-hidden text-ellipsis"
-                            data-current={tab.current}
-                        >
-                            {tab.title}
-                        </button>
-                    )),
+                    tabs.map((tab) => {
+                        return (
+                            <button
+                                on:nanoUpdateTitle={(e) => e.target.innerText = tab.title}
+                                class="tab w-full h-10 rounded-xl text-left px-4 shrink-0 select-none whitespace-nowrap overflow-hidden text-ellipsis"
+                                data-current={tab.current}
+                            >
+                                {tab.title}
+                            </button>
+                        );
+                    }),
                 )}
             </div>
         </div>

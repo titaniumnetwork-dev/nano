@@ -118,6 +118,12 @@ const Home = function () {
         this.theme = newTheme;
     };
 
+    const updateTitles = () => {
+        for (let tab of [...document.querySelectorAll(".tab")]) {
+            tab.dispatchEvent(new Event("nanoUpdateTitle"));
+        }
+    }
+
     setInterval(() => {
         if (this.tabs[this.current].hasOwnProperty("iframe")) {
             let newLocation =
@@ -137,7 +143,7 @@ const Home = function () {
                 if (newTitle !== this.tabs[this.current].title) {
                     this.tabs[this.current].title =
                         newTitle || this.tabs[this.current].url;
-                    this.tabs = [...this.tabs];
+                    updateTitles();
                 }
             }
         }
