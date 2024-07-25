@@ -1,14 +1,15 @@
 # nano.
+
 A minimalist web proxy built to be simple yet powerful.
 
 Submission for Proxathon 2024.
 
 ## Features
 
-- Minimalist design
-- Easy to use
-- Tabbed interface
-- Support for many popular sites
+-   Minimal design
+-   Easy to use
+-   Tabbed interface
+-   Support for many popular sites
 
 ## Setup
 
@@ -17,11 +18,11 @@ Submission for Proxathon 2024.
 
 **Start**
 
-Run `pnpm start` to start the server. If no build folder if found, nano will attempt to build.
+Run `pnpm start` to start the server. If no build folder is found, the app will build before starting.
 
 **Build**
 
-Run `pnpm run build` to build app for production into the `dist` folder.
+Run `pnpm run build` to build the app for production into the `dist` folder.
 
 **Development**
 

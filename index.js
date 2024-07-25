@@ -4,13 +4,13 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 
 if (!fs.existsSync("dist")) {
-    console.log("No build found. Building...");
+    console.log("No build folder found. Building...");
     execSync("pnpm run build");
     console.log("Built!");
 }
 
 const chemical = new ChemicalServer({
-    scramjet: false,
+    rammerhead: false,
 });
 const port = process.env.PORT || 3000;
 
@@ -27,5 +27,5 @@ chemical.app.use((req, res) => {
 });
 
 chemical.server.listen(port, () => {
-    console.log(`nano listening on port ${port}`);
+    console.log(`nano is listening on port ${port}`);
 });

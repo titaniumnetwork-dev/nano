@@ -3,5 +3,10 @@ import { dreamlandPlugin } from "vite-plugin-dreamland";
 import { ChemicalVitePlugin } from "chemicaljs";
 
 export default defineConfig({
-    plugins: [ChemicalVitePlugin(), dreamlandPlugin()],
+    plugins: [
+        ChemicalVitePlugin({
+            rammerhead: false,
+        }),
+        dreamlandPlugin(),
+    ],
 });
