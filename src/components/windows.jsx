@@ -11,7 +11,7 @@ const Windows = function () {
         const newIFrame = document.createElement("iframe");
         newIFrame.src = await searchURL(tab.url);
         newIFrame.classList = "window h-full w-full";
-        newIFrame.dataset.current = tab.current;
+        newIFrame.dataset.current = "true";
         newIFrame.addEventListener("load", (e) => {
             tab.url = window.__uv$config.decodeUrl(
                 e.target.contentWindow.location.pathname.split(

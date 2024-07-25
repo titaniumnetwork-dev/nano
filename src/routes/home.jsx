@@ -15,14 +15,13 @@ const Home = function () {
     this.tabs = [
         {
             title: "New Tab",
-            current: true,
         },
     ];
-    this.current = this.tabs.findIndex((tab) => tab.current);
+    this.current = 0;
     this.currentHasURL = false;
 
     useChange(this.sidebar, () => {
-        localStorage.setItem("@nano/sidebar", String(this.sidebar))
+        localStorage.setItem("@nano/sidebar", String(this.sidebar));
     });
 
     useChange([this.search, this.current], () => {
@@ -43,7 +42,7 @@ const Home = function () {
         const newIFrame = document.createElement("iframe");
         newIFrame.src = await searchURL(tab.url);
         newIFrame.classList = "window h-full w-full";
-        newIFrame.dataset.current = tab.current;
+        newIFrame.dataset.current = "true"
         this.windows.appendChild(newIFrame);
 
         return newIFrame;
@@ -122,7 +121,7 @@ const Home = function () {
         for (let tab of [...document.querySelectorAll(".tab")]) {
             tab.dispatchEvent(new Event("nanoUpdateTitle"));
         }
-    }
+    };
 
     setInterval(() => {
         if (this.tabs[this.current].hasOwnProperty("iframe")) {

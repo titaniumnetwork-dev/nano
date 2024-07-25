@@ -135,7 +135,7 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 }
 
 @starting-style {
-    .tab {
+    body:not([data-deleting-tab="true"]) .tab {
         opacity: 0;
         height: 0;
         color: transparent;
@@ -163,4 +163,12 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 
 .window[data-current="false"] {
     display: none;
+}
+
+.tab-close {
+    transition: opacity 0.15s ease;
+}
+
+body:not([data-dragging="true"]) .tab:hover .tab-close, .tab[data-current="true"] .tab-close {
+    @apply opacity-100;
 }
