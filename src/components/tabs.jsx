@@ -34,8 +34,6 @@ const Tabs = function () {
     };
 
     const newTab = () => {
-        this.tabs = [...this.tabs];
-
         for (let tab of this.tabs) {
             if (tab.hasOwnProperty("iframe")) {
                 tab.iframe.dataset.current = "false";
@@ -49,6 +47,8 @@ const Tabs = function () {
         this.tabs = [createdTab, ...this.tabs];
 
         this.current = 0;
+
+        this.tabs = [...this.tabs];
     };
 
     const setCurrent = (index) => {
@@ -59,7 +59,6 @@ const Tabs = function () {
         }
 
         this.current = index;
-        this.tabs[index].current = true;
         if (this.tabs[this.current].hasOwnProperty("iframe")) {
             this.tabs[this.current].iframe.dataset.current = "true";
         }
