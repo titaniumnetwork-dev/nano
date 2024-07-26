@@ -1,7 +1,10 @@
 {
     "name": "nano",
     "description": "A minimalist web proxy built to be simple yet powerful.",
-    "contributors": ["Leaflet", "Nebelung"],
+    "contributors": [
+        "Leaflet",
+        "Nebelung"
+    ],
     "version": "0.0.1",
     "license": "AGPL-3.0-only",
     "type": "module",
@@ -10,23 +13,23 @@
         "build": "vite build",
         "dev": "vite",
         "preview": "vite preview",
-        "update": "npx npm-check-updates -u && npm i",
+        "update": "npx npm-check-updates -u && pnpm i",
         "revert": "git reset HEAD --hard && git clean -fd"
     },
     "dependencies": {
-        "chemicaljs": "^1.4.9",
+        "chemicaljs": "^1.5.0",
         "dreamland": "^0.0.24",
         "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
         "express": "^4.19.2",
         "rollup-plugin-typescript2": "^0.36.0",
         "sortablejs": "^1.15.2",
-        "vite-plugin-dreamland": "^1.2.0"
+        "vite-plugin-dreamland": "^1.2.1"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
-        "postcss": "^8.4.39",
-        "prettier": "^3.2.5",
-        "tailwindcss": "^3.4.4",
-        "vite": "^5.2.11"
+        "postcss": "^8.4.40",
+        "prettier": "^3.3.3",
+        "tailwindcss": "^3.4.7",
+        "vite": "^5.3.5"
     }
 }
