@@ -72,8 +72,7 @@ const Settings = function () {
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
                     on:click={() =>
-                        (this.searchEngine =
-                            "https://www.bing.com/search?q=%s")
+                        (this.searchEngine = "https://www.bing.com/search?q=%s")
                     }
                 >
                     <Bing class="w-4 h-4 shrink-0" />
@@ -132,8 +131,7 @@ const Settings = function () {
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
                     on:click={() =>
-                        (this.searchEngine =
-                            "https://searx.si/search?q=%s")
+                        (this.searchEngine = "https://searx.si/search?q=%s")
                     }
                 >
                     <SearXNG class="w-4 h-4 shrink-0" />
@@ -142,14 +140,19 @@ const Settings = function () {
                         class:theme-hidden={use(
                             this.searchEngine,
                             (searchEngine) =>
-                                searchEngine !==
-                                "https://searx.si/search?q=%s",
+                                searchEngine !== "https://searx.si/search?q=%s",
                         )}
                     >
                         SearXNG
                     </span>
                 </button>
             </div>
+            <input
+                placeholder="Search Engine (%s = query)"
+                class="h-10 rounded-xl bg-Surface0 px-4 outline-none"
+                bind:value={use(this.searchEngine)}
+                on:input={(e) => this.searchEngine = e.target.value}
+            />
             <h2 class="select-none">Theme</h2>
             <div class="flex flex-wrap gap-2">
                 <button
