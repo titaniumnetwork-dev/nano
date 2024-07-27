@@ -27,7 +27,7 @@ const Settings = function () {
                 (sidebarPage) => sidebarPage !== "settings",
             )}
         >
-            <h2 class="text-xl font-bold select-none">Search Engine</h2>
+            <h2 class="select-none">Search Engine</h2>
             <div class="flex flex-wrap gap-2">
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
@@ -150,7 +150,7 @@ const Settings = function () {
                     </span>
                 </button>
             </div>
-            <h2 class="text-xl font-bold select-none">Theme</h2>
+            <h2 class="select-none">Theme</h2>
             <div class="flex flex-wrap gap-2">
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
