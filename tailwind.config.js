@@ -13,6 +13,6 @@ export default {
             },
         },
     },
-    safelist: ["hidden"],
+    safelist: ["hidden", "w-0", "m-0"],
     plugins: [],
 };

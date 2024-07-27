@@ -38,13 +38,49 @@ body[data-theme="latte"] {
     --Blue: #1e66f5;
 }
 
-body[data-theme="green"] {
+body[data-theme="nord"] {
+    --Crust: #2e3440;
+    --Base: #3b4252;
+    --Surface0: #4c566a;
+    --Text: #eceff4;
+    --Subtext0: #d8dee9;
+    --Blue: #88c0d0;
+}
+
+body[data-theme="rose-pine"] {
+    --Crust: #191724;
+    --Base: #1f1d2e;
+    --Surface0: #26233a;
+    --Text: #e0def4;
+    --Subtext0: #908caa;
+    --Blue: #ebbcba;
+}
+
+body[data-theme="moss"] {
     --Crust: #212121;
     --Base: #2f2f2f;
     --Surface0: #444444;
     --Text: #ececec;
     --Subtext0: #9b9b9b;
     --Blue: #4caf50;
+}
+
+body[data-theme="gruvbox"] {
+    --Crust: #282828;
+    --Base: #3c3836;
+    --Surface0: #504945;
+    --Text: #fbf1c7;
+    --Subtext0: #d5c4a1;
+    --Blue: #ebdbb2;
+}
+
+body[data-theme="night"] {
+    --Crust: #0d1117;
+    --Base: #161b22;
+    --Surface0: #21262d;
+    --Text: #c9d1d9;
+    --Subtext0: #8b949e;
+    --Blue: #58a6ff;
 }
 
 body[data-theme-changing="true"],
@@ -174,4 +210,8 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 body:not([data-dragging="true"]) .tab:hover .tab-close,
 .tab[data-current="true"] .tab-close {
     @apply opacity-100;
+}
+
+.theme-hidden {
+    @apply w-0 !m-0;
 }
