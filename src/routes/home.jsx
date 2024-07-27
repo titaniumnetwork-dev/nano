@@ -5,13 +5,18 @@ import ArrowRight from "../icons/arrow-right";
 import ArrowLeft from "../icons/arrow-left";
 import RotateCW from "../icons/rotate-cw";
 import ViewSidebar from "../icons/view-sidebar";
+import SettingsIcon from "../icons/settings";
 import { searchURL } from "../util/searchURL";
+import Settings from "../components/settings";
 
 const Home = function () {
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
     this.sidebar = localStorage.getItem("@nano/sidebar") == "true" || false;
+    this.sidebarPage = localStorage.getItem("@nano/sidebarPage") || "tabs";
+    this.tabsActive = false;
+    this.settingsActive = false;
     this.tabs = [
         {
             title: "New Tab",
@@ -19,6 +24,15 @@ const Home = function () {
     ];
     this.current = 0;
     this.currentHasURL = false;
+
+    useChange([this.sidebar, this.sidebarPage], () => {
+        this.tabsActive = this.sidebar && this.sidebarPage == "tabs";
+        this.settingsActive = this.sidebar && this.sidebarPage == "settings";
+    });
+
+    useChange(this.sidebarPage, () => {
+        localStorage.setItem("@nano/sidebarPage", this.sidebarPage);
+    });
 
     useChange(this.sidebar, () => {
         localStorage.setItem("@nano/sidebar", String(this.sidebar));
@@ -105,18 +119,6 @@ const Home = function () {
         }
     };
 
-    let themeChangingTimeout;
-    const changeTheme = (newTheme) => {
-        if (typeof themeChangingTimeout === "number") {
-            clearTimeout(themeChangingTimeout);
-        }
-        document.body.dataset.themeChanging = "true";
-        themeChangingTimeout = setTimeout(() => {
-            document.body.dataset.themeChanging = "false";
-        }, 600);
-        this.theme = newTheme;
-    };
-
     const updateTitles = () => {
         for (let tab of [...document.querySelectorAll(".tab")]) {
             tab.dispatchEvent(new Event("nanoUpdateTitle"));
@@ -148,6 +150,17 @@ const Home = function () {
         }
     }, 1000);
 
+    const toggleSidebar = (page) => {
+        if (this.sidebarPage !== page) {
+            if (!this.sidebar) {
+                this.sidebar = true;
+            }
+            this.sidebarPage = page;
+        } else {
+            this.sidebar = !this.sidebar;
+        }
+    };
+
     return (
         <div>
             <Head bind:theme={use(this.theme)} />
@@ -156,6 +169,12 @@ const Home = function () {
                 bind:iframes={use(this.windows)}
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}
+                bind:sidebarPage={use(this.sidebarPage)}
+            />
+            <Settings
+                bind:sidebar={use(this.sidebar)}
+                bind:sidebarPage={use(this.sidebarPage)}
+                bind:theme={use(this.theme)}
             />
             <Windows
                 bind:windows={use(this.windows)}
@@ -168,12 +187,22 @@ const Home = function () {
             <div class="flex justify-center fixed bottom-0 right-0 left-0">
                 <div class="flex items-center flex-1 gap-2 bg-Base rounded-[26px] p-1.5 my-2 mx-5 max-w-3xl shadow">
                     <button
-                        on:click={() => (this.sidebar = !this.sidebar)}
-                        aria-label="Toggle Sidebar"
-                        class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center mx-1 bg-Surface0 p-2"
+                        on:click={() => toggleSidebar("tabs")}
+                        aria-label="Tabs Sidebar"
+                        class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center ml-1 p-2"
+                        class:bg-Surface0={use(this.tabsActive)}
                     >
                         <ViewSidebar class="sidebar-animated" />
                     </button>
+                    <button
+                        on:click={() => toggleSidebar("settings")}
+                        aria-label="Settings Sidebar"
+                        class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
+                        class:bg-Surface0={use(this.settingsActive)}
+                    >
+                        <SettingsIcon class="sidebar-animated" />
+                    </button>
+                    <div class="bg-Surface0 w-[2px] h-[calc(100%_-_1.25rem)] mr-1"></div>
                     <input
                         autofocus
                         bind:this={use(this.search)}
@@ -202,23 +231,6 @@ const Home = function () {
                     >
                         <RotateCW class="rotate-animated" />
                     </button>
-                    {/*
-                    <button on:click={() => changeTheme("mocha")}>
-                        Set Mocha
-                    </button>
-                    <button on:click={() => changeTheme("macchiato")}>
-                        Set Macchiato
-                    </button>
-                    <button on:click={() => changeTheme("frappe")}>
-                        Set Frappe
-                    </button>
-                    <button on:click={() => changeTheme("latte")}>
-                        Set Latte
-                    </button>
-                    <button on:click={() => changeTheme("green")}>
-                        Set Green
-                    </button>
-                    */}
                 </div>
             </div>
         </div>

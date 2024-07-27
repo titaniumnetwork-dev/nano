@@ -11,7 +11,7 @@
     "scripts": {
         "start": "node index.js",
         "build": "vite build",
-        "dev": "vite",
+        "dev": "vite dev",
         "preview": "vite preview",
         "update": "npx npm-check-updates -u && pnpm i",
         "revert": "git reset HEAD --hard && git clean -fd"
