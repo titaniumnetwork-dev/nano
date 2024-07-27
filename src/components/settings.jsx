@@ -27,10 +27,11 @@ const Settings = function () {
                 (sidebarPage) => sidebarPage !== "settings",
             )}
         >
-            <h2 class="select-none">Search Engine</h2>
+            <p class="select-none text-center">Search Engine</p>
             <div class="flex flex-wrap gap-2">
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Google"
                     on:click={() =>
                         (this.searchEngine =
                             "https://www.google.com/search?q=%s")
@@ -51,6 +52,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="DuckDuckGo"
                     on:click={() =>
                         (this.searchEngine =
                             "https://duckduckgo.com/?q=%s&ia=web")
@@ -71,6 +73,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Bing"
                     on:click={() =>
                         (this.searchEngine = "https://www.bing.com/search?q=%s")
                     }
@@ -90,6 +93,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Yahoo"
                     on:click={() =>
                         (this.searchEngine =
                             "https://search.yahoo.com/search?p=%s")
@@ -110,6 +114,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Brave"
                     on:click={() =>
                         (this.searchEngine =
                             "https://search.brave.com/search?q=%s")
@@ -130,6 +135,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="SearXNG"
                     on:click={() =>
                         (this.searchEngine = "https://searx.si/search?q=%s")
                     }
@@ -153,10 +159,11 @@ const Settings = function () {
                 bind:value={use(this.searchEngine)}
                 on:input={(e) => this.searchEngine = e.target.value}
             />
-            <h2 class="select-none">Theme</h2>
+            <p class="select-none text-center">Theme</p>
             <div class="flex flex-wrap gap-2">
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Mocha"
                     on:click={() => changeTheme("mocha")}
                 >
                     <div class="w-4 h-4 bg-[#89b4fa] rounded-full shrink-0"></div>
@@ -172,6 +179,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Macchiato"
                     on:click={() => changeTheme("macchiato")}
                 >
                     <div class="w-4 h-4 bg-[#8aadf4] rounded-full shrink-0"></div>
@@ -187,6 +195,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Frappe"
                     on:click={() => changeTheme("frappe")}
                 >
                     <div class="w-4 h-4 bg-[#8caaee] rounded-full shrink-0"></div>
@@ -202,6 +211,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Latte"
                     on:click={() => changeTheme("latte")}
                 >
                     <div class="w-4 h-4 bg-[#1e66f5] rounded-full shrink-0"></div>
@@ -217,6 +227,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Nord"
                     on:click={() => changeTheme("nord")}
                 >
                     <div class="w-4 h-4 bg-[#88c0d0] rounded-full shrink-0"></div>
@@ -232,6 +243,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Rose Pine"
                     on:click={() => changeTheme("rose-pine")}
                 >
                     <div class="w-4 h-4 bg-[#ebbcba] rounded-full shrink-0"></div>
@@ -247,6 +259,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Moss"
                     on:click={() => changeTheme("moss")}
                 >
                     <div class="w-4 h-4 bg-[#4caf50] rounded-full shrink-0"></div>
@@ -262,6 +275,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Gruvbox"
                     on:click={() => changeTheme("gruvbox")}
                 >
                     <div class="w-4 h-4 bg-[#ebdbb2] rounded-full shrink-0"></div>
@@ -277,6 +291,7 @@ const Settings = function () {
                 </button>
                 <button
                     class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Night"
                     on:click={() => changeTheme("night")}
                 >
                     <div class="w-4 h-4 bg-[#58a6ff] rounded-full shrink-0"></div>

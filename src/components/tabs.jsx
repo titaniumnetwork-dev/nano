@@ -107,6 +107,7 @@ const Tabs = function () {
         >
             <button
                 on:click={() => newTab()}
+                aria-label="New Tab"
                 class="bg-Base w-full h-10 rounded-xl text-left px-4 shrink-0 flex items-center gap-2 select-none whitespace-nowrap overflow-hidden text-ellipsis"
             >
                 <div class="h-4 w-4 rounded-full flex justify-center items-center">
@@ -126,6 +127,7 @@ const Tabs = function () {
                                 ).innerText = tab.title)
                             }
                             class="tab flex justify-between items-center gap-2 w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
+                            aria-label={"Tab #" + String(index)}
                             data-current={index == this.current}
                         >
                             <span class="tab-title whitespace-nowrap overflow-hidden text-ellipsis">
@@ -133,6 +135,7 @@ const Tabs = function () {
                             </span>
                             <button
                                 on:click={() => removeTab(index)}
+                                aria-label={"Close tab #" + String(index)}
                                 class="tab-close opacity-0 h-4 w-4 rounded-full flex justify-center items-center"
                             >
                                 <Minus />

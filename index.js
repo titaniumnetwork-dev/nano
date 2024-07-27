@@ -14,6 +14,8 @@ const chemical = new ChemicalServer({
 });
 const port = process.env.PORT || 3000;
 
+chemical.app.disable("x-powered-by");
+
 chemical.app.use(
     express.static("dist", {
         index: "index.html",
