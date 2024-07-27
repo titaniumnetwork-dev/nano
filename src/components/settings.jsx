@@ -1,3 +1,10 @@
+import Bing from "../icons/searchEngines/bing";
+import Brave from "../icons/searchEngines/brave";
+import DuckDuckGo from "../icons/searchEngines/duckduckgo";
+import Google from "../icons/searchEngines/google";
+import SearXNG from "../icons/searchEngines/searxng";
+import Yahoo from "../icons/searchEngines/yahoo";
+
 const Settings = function () {
     let themeChangingTimeout;
     const changeTheme = (newTheme) => {
@@ -20,6 +27,129 @@ const Settings = function () {
                 (sidebarPage) => sidebarPage !== "settings",
             )}
         >
+            <h2 class="text-xl font-bold select-none">Search Engine</h2>
+            <div class="flex flex-wrap gap-2">
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://www.google.com/search?q=%s")
+                    }
+                >
+                    <Google class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://www.google.com/search?q=%s",
+                        )}
+                    >
+                        Google
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://duckduckgo.com/?q=%s&ia=web")
+                    }
+                >
+                    <DuckDuckGo class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://duckduckgo.com/?q=%s&ia=web",
+                        )}
+                    >
+                        DuckDuckGo
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://www.bing.com/search?q=%s")
+                    }
+                >
+                    <Bing class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://www.bing.com/search?q=%s",
+                        )}
+                    >
+                        Bing
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://search.yahoo.com/search?p=%s")
+                    }
+                >
+                    <Yahoo class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://search.yahoo.com/search?p=%s",
+                        )}
+                    >
+                        Yahoo
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://search.brave.com/search?q=%s")
+                    }
+                >
+                    <Brave class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://search.brave.com/search?q=%s",
+                        )}
+                    >
+                        Brave
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    on:click={() =>
+                        (this.searchEngine =
+                            "https://searx.si/search?q=%s")
+                    }
+                >
+                    <SearXNG class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.searchEngine,
+                            (searchEngine) =>
+                                searchEngine !==
+                                "https://searx.si/search?q=%s",
+                        )}
+                    >
+                        SearXNG
+                    </span>
+                </button>
+            </div>
             <h2 class="text-xl font-bold select-none">Theme</h2>
             <div class="flex flex-wrap gap-2">
                 <button

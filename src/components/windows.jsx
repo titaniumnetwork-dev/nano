@@ -9,7 +9,7 @@ const Windows = function () {
 
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
-        newIFrame.src = await searchURL(tab.url);
+        newIFrame.src = await searchURL(tab.url, this.searchEngine);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = "true";
         newIFrame.addEventListener("load", (e) => {

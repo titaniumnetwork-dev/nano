@@ -24,7 +24,12 @@ const Home = function () {
     ];
     this.current = 0;
     this.currentHasURL = false;
+    this.searchEngine = localStorage.getItem("@nano/searchEngine") || "https://www.google.com/search?q=%s";
 
+    useChange(this.searchEngine, () => {
+        localStorage.setItem("@nano/searchEngine", this.searchEngine);
+    });
+    
     useChange([this.sidebar, this.sidebarPage], () => {
         this.tabsActive = this.sidebar && this.sidebarPage == "tabs";
         this.settingsActive = this.sidebar && this.sidebarPage == "settings";
@@ -54,7 +59,7 @@ const Home = function () {
 
     const createIFrame = async (tab) => {
         const newIFrame = document.createElement("iframe");
-        newIFrame.src = await searchURL(tab.url);
+        newIFrame.src = await searchURL(tab.url, this.searchEngine);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = "true";
         this.windows.appendChild(newIFrame);
@@ -69,6 +74,7 @@ const Home = function () {
             if (this.tabs[this.current].hasOwnProperty("iframe")) {
                 this.tabs[this.current].iframe.src = await searchURL(
                     this.tabs[this.current].url,
+                    this.searchEngine,
                 );
             } else {
                 this.tabs[this.current].iframe = await createIFrame(
@@ -175,6 +181,7 @@ const Home = function () {
                 bind:sidebar={use(this.sidebar)}
                 bind:sidebarPage={use(this.sidebarPage)}
                 bind:theme={use(this.theme)}
+                bind:searchEngine={use(this.searchEngine)}
             />
             <Windows
                 bind:windows={use(this.windows)}
@@ -183,6 +190,7 @@ const Home = function () {
                 bind:currentHasURL={use(this.currentHasURL)}
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}
+                bind:searchEngine={use(this.searchEngine)}
             />
             <div class="flex justify-center fixed bottom-0 right-0 left-0">
                 <div class="flex items-center flex-1 gap-2 bg-Base rounded-[26px] p-1.5 my-2 mx-5 max-w-3xl shadow">
