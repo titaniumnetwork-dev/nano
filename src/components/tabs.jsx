@@ -92,7 +92,7 @@ const Tabs = function () {
                                 title="Close Tab (Alt+W)"
                                 class="tab-close opacity-0 h-4 w-4 rounded-full flex justify-center items-center"
                             >
-                                <Minus class="tab-close-animated" />
+                                <Minus />
                             </button>
                         </button>
                     )),

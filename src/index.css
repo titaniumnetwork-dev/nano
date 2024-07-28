@@ -204,11 +204,7 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 }
 
 .tab-close {
-    transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.tab-close:hover .tab-close-animated {
-    transform: scale(0.8);   
+    transition: opacity 0.15s ease;
 }
 
 body:not([data-dragging="true"]) .tab:hover .tab-close,
