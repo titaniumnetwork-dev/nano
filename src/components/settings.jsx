@@ -22,7 +22,7 @@ const Settings = function () {
         <div
             class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
             class:sidebar-open={use(this.sidebar)}
-            class:hidden={use(
+            class:sidebar-hidden={use(
                 this.sidebarPage,
                 (sidebarPage) => sidebarPage !== "settings",
             )}
@@ -157,7 +157,7 @@ const Settings = function () {
                 placeholder="Search Engine (%s = query)"
                 class="h-10 rounded-xl bg-Surface0 px-4 outline-none"
                 bind:value={use(this.searchEngine)}
-                on:input={(e) => this.searchEngine = e.target.value}
+                on:input={(e) => (this.searchEngine = e.target.value)}
             />
             <p class="select-none text-center">Theme</p>
             <div class="flex flex-wrap gap-2">

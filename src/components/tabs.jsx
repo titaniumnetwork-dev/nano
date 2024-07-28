@@ -33,24 +33,6 @@ const Tabs = function () {
         });
     };
 
-    const newTab = () => {
-        for (let tab of this.tabs) {
-            if (tab.hasOwnProperty("iframe")) {
-                tab.iframe.dataset.current = "false";
-            }
-        }
-
-        const createdTab = {
-            title: "New Tab",
-        };
-
-        this.tabs = [createdTab, ...this.tabs];
-
-        this.current = 0;
-
-        this.tabs = [...this.tabs];
-    };
-
     const setCurrent = (index) => {
         for (let tab of this.tabs) {
             if (tab.hasOwnProperty("iframe")) {
@@ -63,51 +45,19 @@ const Tabs = function () {
             this.tabs[this.current].iframe.dataset.current = "true";
         }
     };
-
-    const removeTab = (index) => {
-        document.body.dataset.deletingTab = "true";
-        for (let tab of this.tabs) {
-            if (tab.hasOwnProperty("iframe")) {
-                tab.iframe.dataset.current = "false";
-            }
-        }
-
-        if (this.tabs[index].iframe) {
-            this.tabs[index].iframe.remove();
-        }
-        if (index == this.current) {
-            if (index > 0) {
-                this.current--;
-            }
-        } else if (index < this.current) {
-            this.current--;
-        }
-        this.tabs = this.tabs.filter((_tab, i) => i !== index);
-        if (this.tabs[this.current]) {
-            if (this.tabs[this.current].hasOwnProperty("iframe")) {
-                this.tabs[this.current].iframe.dataset.current = "true";
-            }
-        }
-        this.tabs = [...this.tabs];
-        setTimeout(() => {
-            document.body.dataset.deletingTab = "false";
-            if (!this.tabs.length) {
-                newTab();
-            }
-        });
-    };
     return (
         <div
             class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
             class:sidebar-open={use(this.sidebar)}
-            class:hidden={use(
+            class:sidebar-hidden={use(
                 this.sidebarPage,
                 (sidebarPage) => sidebarPage !== "tabs",
             )}
         >
             <button
-                on:click={() => newTab()}
+                on:click={() => this.newTab()}
                 aria-label="New Tab"
+                title="New Tab (Alt+T)"
                 class="bg-Base w-full h-10 rounded-xl text-left px-4 shrink-0 flex items-center gap-2 select-none whitespace-nowrap overflow-hidden text-ellipsis"
             >
                 <div class="h-4 w-4 rounded-full flex justify-center items-center">
@@ -115,6 +65,9 @@ const Tabs = function () {
                 </div>
                 <span class="whitespace-nowrap overflow-hidden text-ellipsis">
                     New Tab
+                </span>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis ml-auto text-Subtext0">
+                    Alt+T
                 </span>
             </button>
             <div class="flex flex-col gap-2 overflow-y-auto tabs">
@@ -134,11 +87,12 @@ const Tabs = function () {
                                 {tab.title}
                             </span>
                             <button
-                                on:click={() => removeTab(index)}
+                                on:click={() => this.removeTab(index)}
                                 aria-label={"Close tab #" + String(index)}
+                                title="Close Tab (Alt+W)"
                                 class="tab-close opacity-0 h-4 w-4 rounded-full flex justify-center items-center"
                             >
-                                <Minus />
+                                <Minus class="tab-close-animated" />
                             </button>
                         </button>
                     )),

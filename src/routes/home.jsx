@@ -24,12 +24,14 @@ const Home = function () {
     ];
     this.current = 0;
     this.currentHasURL = false;
-    this.searchEngine = localStorage.getItem("@nano/searchEngine") || "https://www.google.com/search?q=%s";
+    this.searchEngine =
+        localStorage.getItem("@nano/searchEngine") ||
+        "https://www.google.com/search?q=%s";
 
     useChange(this.searchEngine, () => {
         localStorage.setItem("@nano/searchEngine", this.searchEngine);
     });
-    
+
     useChange([this.sidebar, this.sidebarPage], () => {
         this.tabsActive = this.sidebar && this.sidebarPage == "tabs";
         this.settingsActive = this.sidebar && this.sidebarPage == "settings";
@@ -62,6 +64,28 @@ const Home = function () {
         newIFrame.src = await searchURL(tab.url, this.searchEngine);
         newIFrame.classList = "window h-full w-full";
         newIFrame.dataset.current = "true";
+        newIFrame.addEventListener("load", (e) => {
+            addKeybinds(e.target.contentWindow);
+
+            tab.url = window.__uv$config.decodeUrl(
+                e.target.contentWindow.location.pathname.split(
+                    window.__uv$config.prefix,
+                )[1],
+            );
+            if (this.search) {
+                if (this.tabs[this.current].hasOwnProperty("url")) {
+                    this.search.value = this.tabs[this.current].url;
+                } else {
+                    this.search.value = "";
+                }
+            }
+
+            let newTitle = e.target.contentWindow.document.title;
+            if (newTitle !== tab.title) {
+                tab.title = newTitle || tab.url;
+                updateTitles();
+            }
+        });
         this.windows.appendChild(newIFrame);
 
         return newIFrame;
@@ -167,6 +191,93 @@ const Home = function () {
         }
     };
 
+    const newTab = () => {
+        for (let tab of this.tabs) {
+            if (tab.hasOwnProperty("iframe")) {
+                tab.iframe.dataset.current = "false";
+            }
+        }
+
+        const createdTab = {
+            title: "New Tab",
+        };
+
+        this.tabs = [createdTab, ...this.tabs];
+
+        this.current = 0;
+
+        this.tabs = [...this.tabs];
+    };
+
+    const removeTab = (index) => {
+        document.body.dataset.deletingTab = "true";
+        for (let tab of this.tabs) {
+            if (tab.hasOwnProperty("iframe")) {
+                tab.iframe.dataset.current = "false";
+            }
+        }
+
+        if (this.tabs[index].iframe) {
+            this.tabs[index].iframe.remove();
+        }
+        if (index == this.current) {
+            if (index > 0) {
+                this.current--;
+            }
+        } else if (index < this.current) {
+            this.current--;
+        }
+        this.tabs = this.tabs.filter((_tab, i) => i !== index);
+        if (this.tabs[this.current]) {
+            if (this.tabs[this.current].hasOwnProperty("iframe")) {
+                this.tabs[this.current].iframe.dataset.current = "true";
+            }
+        }
+        this.tabs = [...this.tabs];
+        setTimeout(() => {
+            document.body.dataset.deletingTab = "false";
+            if (!this.tabs.length) {
+                newTab();
+            }
+        });
+    };
+
+    const addKeybinds = (win = window) => {
+        win.addEventListener("keyup", (e) => {
+            if (e.altKey && !e.ctrlKey && !e.shiftKey) {
+                switch (e.key) {
+                    case "a":
+                        toggleSidebar("tabs");
+                        break;
+                    case "s":
+                        toggleSidebar("settings");
+                        break;
+                    case "t":
+                        newTab();
+                        break;
+                    case "w":
+                        removeTab(this.current);
+                        break;
+                    case "r":
+                        reload();
+                        break;
+                    case "n":
+                        this.search.select();
+                        this.search.focus();
+                        break;
+                    case "ArrowLeft":
+                        back();
+                        break;
+                    case "ArrowRight":
+                        forward();
+                        break;
+                }
+            }
+        });
+    };
+
+    addKeybinds();
+
     return (
         <div>
             <Head bind:theme={use(this.theme)} />
@@ -176,6 +287,8 @@ const Home = function () {
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}
                 bind:sidebarPage={use(this.sidebarPage)}
+                newTab={newTab}
+                removeTab={removeTab}
             />
             <Settings
                 bind:sidebar={use(this.sidebar)}
@@ -191,12 +304,14 @@ const Home = function () {
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}
                 bind:searchEngine={use(this.searchEngine)}
+                createIFrame={createIFrame}
             />
             <div class="flex justify-center fixed bottom-0 right-0 left-0">
                 <div class="flex items-center flex-1 gap-2 bg-Base rounded-[26px] p-1.5 my-2 mx-5 max-w-3xl shadow">
                     <button
                         on:click={() => toggleSidebar("tabs")}
                         aria-label="Tabs Sidebar"
+                        title="Tabs (Alt+A)"
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center ml-1 p-2"
                         class:bg-Surface0={use(this.tabsActive)}
                     >
@@ -205,6 +320,7 @@ const Home = function () {
                     <button
                         on:click={() => toggleSidebar("settings")}
                         aria-label="Settings Sidebar"
+                        title="Settings (Alt+S)"
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                         class:bg-Surface0={use(this.settingsActive)}
                     >
@@ -221,6 +337,7 @@ const Home = function () {
                     <button
                         on:click={back}
                         aria-label="Back"
+                        title="Go Back (Alt+Left)"
                         class="left-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <ArrowLeft class="left-animated" />
@@ -228,6 +345,7 @@ const Home = function () {
                     <button
                         on:click={forward}
                         aria-label="Forward"
+                        title="Go Forward (Alt+Right)"
                         class="right-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <ArrowRight class="right-animated" />
@@ -235,6 +353,7 @@ const Home = function () {
                     <button
                         on:click={reload}
                         aria-label="Reload"
+                        title="Reload (Alt+R)"
                         class="rotate-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <RotateCW class="rotate-animated" />

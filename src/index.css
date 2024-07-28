@@ -147,7 +147,7 @@ body {
 }
 
 .sidebar {
-    transition: opacity 0.6s cubic-bezier(0.95, 0, 0.5, 1);
+    transition: opacity 0.6s ease;
 }
 
 .sidebar-open {
@@ -204,7 +204,11 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 }
 
 .tab-close {
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.tab-close:hover .tab-close-animated {
+    transform: scale(0.8);   
 }
 
 body:not([data-dragging="true"]) .tab:hover .tab-close,
@@ -214,4 +218,8 @@ body:not([data-dragging="true"]) .tab:hover .tab-close,
 
 .theme-hidden {
     @apply w-0 !m-0;
+}
+
+.sidebar-hidden {
+    @apply !opacity-0 pointer-events-none;
 }

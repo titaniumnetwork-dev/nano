@@ -1,42 +1,4 @@
-import { searchURL } from "../util/searchURL";
-
 const Windows = function () {
-    const updateTitles = () => {
-        for (let tab of [...document.querySelectorAll(".tab")]) {
-            tab.dispatchEvent(new Event("nanoUpdateTitle"));
-        }
-    };
-
-    const createIFrame = async (tab) => {
-        const newIFrame = document.createElement("iframe");
-        newIFrame.src = await searchURL(tab.url, this.searchEngine);
-        newIFrame.classList = "window h-full w-full";
-        newIFrame.dataset.current = "true";
-        newIFrame.addEventListener("load", (e) => {
-            tab.url = window.__uv$config.decodeUrl(
-                e.target.contentWindow.location.pathname.split(
-                    window.__uv$config.prefix,
-                )[1],
-            );
-            if (this.search) {
-                if (this.tabs[this.current].hasOwnProperty("url")) {
-                    this.search.value = this.tabs[this.current].url;
-                } else {
-                    this.search.value = "";
-                }
-            }
-
-            let newTitle = e.target.contentWindow.document.title;
-            if (newTitle !== tab.title) {
-                tab.title = newTitle || tab.url;
-                updateTitles();
-            }
-        });
-        this.windows.appendChild(newIFrame);
-
-        return newIFrame;
-    };
-
     window.addEventListener("chemicalLoaded", async () => {
         setTimeout(async () => {
             for (let tab of this.tabs) {
@@ -44,7 +6,7 @@ const Windows = function () {
                     tab.hasOwnProperty("url") &&
                     !tab.hasOwnProperty("iframe")
                 ) {
-                    tab.iframe = await createIFrame(tab);
+                    tab.iframe = await this.createIFrame(tab);
                 }
             }
         }, 100);
