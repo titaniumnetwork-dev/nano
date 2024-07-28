@@ -66,6 +66,7 @@ const Home = function () {
         newIFrame.dataset.current = "true";
         newIFrame.addEventListener("load", (e) => {
             addKeybinds(e.target.contentWindow);
+            interceptLinks(e.target.contentWindow);
 
             tab.url = window.__uv$config.decodeUrl(
                 e.target.contentWindow.location.pathname.split(
@@ -191,22 +192,30 @@ const Home = function () {
         }
     };
 
-    const newTab = () => {
+    const newTab = async (title = "New Tab", url) => {
         for (let tab of this.tabs) {
             if (tab.hasOwnProperty("iframe")) {
                 tab.iframe.dataset.current = "false";
             }
         }
 
-        const createdTab = {
-            title: "New Tab",
+        let createdTab = {
+            title: title,
         };
+
+        if (url) {
+            createdTab.url = url;
+        }
 
         this.tabs = [createdTab, ...this.tabs];
 
         this.current = 0;
 
         this.tabs = [...this.tabs];
+
+        if (url) {
+            createdTab.iframe = await createIFrame(this.tabs[this.current]);
+        }
     };
 
     const removeTab = (index) => {
@@ -238,6 +247,36 @@ const Home = function () {
             document.body.dataset.deletingTab = "false";
             if (!this.tabs.length) {
                 newTab();
+            }
+        });
+    };
+
+    const interceptLinks = (win = window) => {
+        win.open = new Proxy(win.open, {
+            apply(_target, _thisArg, argArray) {
+                if (argArray[0]) {
+                    newTab(argArray[0], argArray[0]);
+                }
+
+                return;
+            },
+        });
+
+        win.addEventListener("click", (e) => {
+            if (e.target.tagName == "A" && e.target.hasAttribute("href")) {
+                let isNewTab =
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    (e.target.hasAttribute("target") &&
+                        e.target.getAttribute("target").includes("_blank"));
+
+                if (isNewTab) {
+                    e.preventDefault();
+                    newTab(
+                        e.target.getAttribute("href"),
+                        e.target.getAttribute("href"),
+                    );
+                }
             }
         });
     };
