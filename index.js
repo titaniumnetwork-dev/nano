@@ -10,6 +10,7 @@ if (!fs.existsSync("dist")) {
 }
 
 const chemical = new ChemicalServer({
+    scramjet: false,
     rammerhead: false,
 });
 const port = process.env.PORT || 3000;
