@@ -27,6 +27,158 @@ const Settings = function () {
                 (sidebarPage) => sidebarPage !== "settings",
             )}
         >
+            <p class="select-none text-center">Tab Cloak</p>
+            <div class="flex flex-wrap gap-2">
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak None"
+                    on:click={() => (
+                        (this.cloakTitle = ""), (this.cloakIcon = "")
+                    )}
+                >
+                    <img
+                        src="/logo.svg"
+                        draggable={false}
+                        class="w-4 h-4 shrink-0"
+                    />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle,
+                        )}
+                    >
+                        None
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak Google"
+                    on:click={() => (
+                        (this.cloakTitle = "Google"),
+                        (this.cloakIcon = "https://www.google.com/favicon.ico")
+                    )}
+                >
+                    <Google class="w-4 h-4 shrink-0" />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle !== "Google",
+                        )}
+                    >
+                        Google
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak Wikipedia"
+                    on:click={() => (
+                        (this.cloakTitle = "Wikipedia"),
+                        (this.cloakIcon =
+                            "https://www.wikipedia.org/static/favicon/wikipedia.ico")
+                    )}
+                >
+                    <img
+                        src="https://www.wikipedia.org/static/favicon/wikipedia.ico"
+                        draggable={false}
+                        class="w-4 h-4 shrink-0"
+                    />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle !== "Wikipedia",
+                        )}
+                    >
+                        Wikipedia
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak Canvas"
+                    on:click={() => (
+                        (this.cloakTitle = "Canvas"),
+                        (this.cloakIcon =
+                            "https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico")
+                    )}
+                >
+                    <img
+                        src="https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico"
+                        draggable={false}
+                        class="w-4 h-4 shrink-0"
+                    />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle !== "Canvas",
+                        )}
+                    >
+                        Canvas
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak Google Classroom"
+                    on:click={() => (
+                        (this.cloakTitle = "Google Classroom"),
+                        (this.cloakIcon =
+                            "https://ssl.gstatic.com/classroom/ic_product_classroom_144.png")
+                    )}
+                >
+                    <img
+                        src="https://ssl.gstatic.com/classroom/ic_product_classroom_144.png"
+                        draggable={false}
+                        class="w-4 h-4 shrink-0"
+                    />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle !== "Google Classroom",
+                        )}
+                    >
+                        Google Classroom
+                    </span>
+                </button>
+                <button
+                    class="flex justify-center items-center px-[1.125rem] h-10 rounded-xl select-none bg-Surface0"
+                    aria-label="Cloak Google Drive"
+                    on:click={() => (
+                        (this.cloakTitle = "Google Drive"),
+                        (this.cloakIcon =
+                            "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png")
+                    )}
+                >
+                    <img
+                        src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"
+                        draggable={false}
+                        class="w-4 h-4 shrink-0"
+                    />
+                    <span
+                        class="ml-2 overflow-hidden"
+                        class:theme-hidden={use(
+                            this.cloakTitle,
+                            (cloakTitle) => cloakTitle !== "Google Drive",
+                        )}
+                    >
+                        Google Drive
+                    </span>
+                </button>
+            </div>
+            <input
+                placeholder="Title"
+                class="h-10 rounded-xl bg-Surface0 px-4 outline-none"
+                bind:value={use(this.cloakTitle)}
+                on:input={(e) => (this.cloakTitle = e.target.value)}
+            />
+            <input
+                placeholder="Icon"
+                class="h-10 rounded-xl bg-Surface0 px-4 outline-none"
+                bind:value={use(this.cloakIcon)}
+                on:input={(e) => (this.cloakIcon = e.target.value)}
+            />
             <p class="select-none text-center">Search Engine</p>
             <div class="flex flex-wrap gap-2">
                 <button

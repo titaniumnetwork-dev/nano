@@ -27,6 +27,8 @@ const Home = function () {
     this.searchEngine =
         localStorage.getItem("@nano/searchEngine") ||
         "https://www.google.com/search?q=%s";
+    this.cloakTitle = localStorage.getItem("@nano/cloak/title") || "";
+    this.cloakIcon = localStorage.getItem("@nano/cloak/icon") || "";
 
     useChange(this.searchEngine, () => {
         localStorage.setItem("@nano/searchEngine", this.searchEngine);
@@ -319,7 +321,11 @@ const Home = function () {
 
     return (
         <div>
-            <Head bind:theme={use(this.theme)} />
+            <Head
+                bind:theme={use(this.theme)}
+                bind:cloakTitle={use(this.cloakTitle)}
+                bind:cloakIcon={use(this.cloakIcon)}
+            />
             <Tabs
                 bind:current={use(this.current)}
                 bind:iframes={use(this.windows)}
@@ -334,6 +340,8 @@ const Home = function () {
                 bind:sidebarPage={use(this.sidebarPage)}
                 bind:theme={use(this.theme)}
                 bind:searchEngine={use(this.searchEngine)}
+                bind:cloakTitle={use(this.cloakTitle)}
+                bind:cloakIcon={use(this.cloakIcon)}
             />
             <Windows
                 bind:windows={use(this.windows)}
