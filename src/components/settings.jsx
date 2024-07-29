@@ -38,6 +38,7 @@ const Settings = function () {
                 >
                     <img
                         src="/logo.svg"
+                        alt="nano logo"
                         draggable={false}
                         class="w-4 h-4 shrink-0"
                     />
@@ -81,6 +82,7 @@ const Settings = function () {
                 >
                     <img
                         src="https://www.wikipedia.org/static/favicon/wikipedia.ico"
+                        alt="Wikipedia Logo"
                         draggable={false}
                         class="w-4 h-4 shrink-0"
                     />
@@ -105,6 +107,7 @@ const Settings = function () {
                 >
                     <img
                         src="https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico"
+                        alt="Canvas Logo"
                         draggable={false}
                         class="w-4 h-4 shrink-0"
                     />
@@ -129,6 +132,7 @@ const Settings = function () {
                 >
                     <img
                         src="https://ssl.gstatic.com/classroom/ic_product_classroom_144.png"
+                        alt="Google Classroom Logo"
                         draggable={false}
                         class="w-4 h-4 shrink-0"
                     />
@@ -153,6 +157,7 @@ const Settings = function () {
                 >
                     <img
                         src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"
+                        alt="Google Drive Logo"
                         draggable={false}
                         class="w-4 h-4 shrink-0"
                     />
