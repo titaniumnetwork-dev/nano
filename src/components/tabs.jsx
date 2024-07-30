@@ -6,7 +6,7 @@ const Tabs = function () {
     this.mount = () => {
         new Sortable(this.root.querySelector(".tabs"), {
             forceFallback: true,
-            animation: 300,
+            animation: 200,
             direction: "vertical",
             dragClass: "dragging",
             filter: ".tab-close",
