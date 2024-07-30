@@ -18,7 +18,7 @@
         "revert": "git reset HEAD --hard && git clean -fd"
     },
     "dependencies": {
-        "chemicaljs": "^1.6.1",
+        "chemicaljs": "^1.6.2",
         "dreamland": "^0.0.24",
         "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
         "express": "^4.19.2",

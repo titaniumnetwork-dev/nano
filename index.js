@@ -29,6 +29,6 @@ chemical.app.use((req, res) => {
     res.sendFile("dist/index.html", { root: "." });
 });
 
-chemical.server.listen(port, () => {
+chemical.listen(port, () => {
     console.log(`nano is listening on port ${port}`);
 });
