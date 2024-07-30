@@ -24,6 +24,11 @@ Run `pnpm start` to start the server. If no build folder is found, the app will 
 
 Run `pnpm run build` to build the app for production into the `dist` folder.
 
+**Build Static**
+
+Run `pnpm run build-static` to build the app for production into the `dist` folder. This is only for static hosting on github pages etc. Make sure to change the wisp server in `/index.html`.
+
+
 **Development**
 
 Run `pnpm run dev` to run the app in development mode.

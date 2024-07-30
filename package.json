@@ -11,13 +11,14 @@
     "scripts": {
         "start": "node index.js",
         "build": "vite build",
+        "build-static": "vite build && node build.js",
         "dev": "vite dev",
         "preview": "vite preview",
         "update": "npx npm-check-updates -u && pnpm i",
         "revert": "git reset HEAD --hard && git clean -fd"
     },
     "dependencies": {
-        "chemicaljs": "^1.5.0",
+        "chemicaljs": "^1.6.1",
         "dreamland": "^0.0.24",
         "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
         "express": "^4.19.2",
