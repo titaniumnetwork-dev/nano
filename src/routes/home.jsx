@@ -13,7 +13,7 @@ const Home = function () {
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
-    this.sidebar = localStorage.getItem("@nano/sidebar") == "true" || false;
+    this.sidebar = localStorage.getItem("@nano/sidebar") == "true" || true;
     this.sidebarPage = localStorage.getItem("@nano/sidebarPage") || "tabs";
     this.tabsActive = false;
     this.settingsActive = false;
