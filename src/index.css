@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    --theme-mocha: #89b4fa;
+    --theme-macchiato: #8aadf4;
+    --theme-frappe: #8caaee;
+    --theme-latte: #1e66f5;
+    --theme-nord: #88c0d0;
+    --theme-rose-pine: #ebbcba;
+    --theme-moss: #4caf50;
+    --theme-gruvbox: #ebdbb2;
+    --theme-night: #58a6ff;
+}
+
 body[data-theme="mocha"] {
     --Crust: #11111b;
     --Base: #1e1e2e;
@@ -148,6 +160,8 @@ body {
 
 .sidebar {
     transition: opacity 0.2s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--Surface0) transparent;
 }
 
 .sidebar-open {
@@ -189,11 +203,11 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
         display 0.2s allow-discrete;
 }
 
-.tabs::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar {
     width: 16px;
 }
 
-.tabs::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb {
     background: var(--Base);
     background-clip: padding-box;
     border-left: 8px solid transparent;
@@ -210,10 +224,6 @@ body:not([data-dragging="true"]) .tab:not([data-current="true"]) {
 body:not([data-dragging="true"]) .tab:hover .tab-close,
 .tab[data-current="true"] .tab-close {
     @apply opacity-100;
-}
-
-.theme-hidden {
-    @apply w-0 !m-0;
 }
 
 .sidebar-hidden {

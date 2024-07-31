@@ -17,14 +17,14 @@ const port = process.env.PORT || 3000;
 
 chemical.app.disable("x-powered-by");
 
-chemical.app.use(
+chemical.use(
     express.static("dist", {
         index: "index.html",
         extensions: ["html"],
     }),
 );
 
-chemical.app.use((req, res) => {
+chemical.error((req, res) => {
     res.status(404);
     res.sendFile("dist/index.html", { root: "." });
 });

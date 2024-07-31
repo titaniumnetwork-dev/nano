@@ -26,7 +26,7 @@ Run `pnpm run build` to build the app for production into the `dist` folder.
 
 **Build Static**
 
-Run `pnpm run build-static` to build the app for production into the `dist` folder. This is only for static hosting on github pages etc. Make sure to change the wisp server in `/index.html`.
+Run `pnpm run build-static` to build the app for production into the `dist` folder. This is only for static hosting on github pages etc. Make sure to change the Wisp server in `/index.html` to an external one.
 
 
 **Development**
@@ -53,4 +53,4 @@ Icons - Feather Icons & Material Symbols
 
 ## License
 
-Nano uses the AGPL-3.0 license.
+nano uses the AGPL-3.0 license.
