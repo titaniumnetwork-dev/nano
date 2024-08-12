@@ -2,7 +2,7 @@
 
 A minimalist web proxy built to be simple yet powerful.
 
-Submission for Proxathon 2024.
+Winner of the 2024 Proxathon.
 
 ## Features
 
