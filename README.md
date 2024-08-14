@@ -26,8 +26,7 @@ Run `pnpm run build` to build the app for production into the `dist` folder.
 
 **Build Static**
 
-Run `pnpm run build-static` to build the app for production into the `dist` folder. This is only for static hosting on github pages etc. Make sure to change the Wisp server in `/index.html` to an external one.
-
+Run `pnpm run build-static` to build the app for production into the `dist` folder. This is for static hosting on Github Pages etc. Make sure to change the Wisp server in `/index.html` to an external one.
 
 **Development**
 
