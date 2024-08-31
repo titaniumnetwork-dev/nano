@@ -95,7 +95,7 @@ const Home = function () {
     };
 
     const searchKeydown = async (e) => {
-        if (e.key == "Enter" && window.chemicalLoaded && e.target.value) {
+        if (e.key == "Enter" && window.chemical.loaded && e.target.value) {
             this.tabs[this.current].url = e.target.value;
 
             if (this.tabs[this.current].hasOwnProperty("iframe")) {

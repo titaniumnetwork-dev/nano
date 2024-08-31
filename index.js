@@ -9,26 +9,28 @@ if (!fs.existsSync("dist")) {
     console.log("Built!");
 }
 
-const chemical = new ChemicalServer({
+const [app, listen] = new ChemicalServer({
     scramjet: false,
     rammerhead: false,
 });
 const port = process.env.PORT || 3000;
 
-chemical.app.disable("x-powered-by");
+app.disable("x-powered-by");
 
-chemical.use(
+app.use(
     express.static("dist", {
         index: "index.html",
         extensions: ["html"],
     }),
 );
 
-chemical.error((req, res) => {
+app.serveChemical();
+
+app.use((req, res) => {
     res.status(404);
     res.sendFile("dist/index.html", { root: "." });
 });
 
-chemical.listen(port, () => {
+listen(port, () => {
     console.log(`nano is listening on port ${port}`);
 });
