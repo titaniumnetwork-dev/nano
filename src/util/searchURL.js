@@ -3,7 +3,6 @@ async function searchURL(
     searchEngine = "https://www.google.com/search?q=%s",
 ) {
     return await window.chemical.encode(input, {
-        service: "uv",
         autoHttps: true,
         searchEngine
     });
