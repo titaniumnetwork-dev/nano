@@ -46,6 +46,12 @@ const Tabs = function () {
             this.tabs[this.current].iframe.dataset.current = "true";
         }
     };
+    useChange(this.tabs, () => {
+        console.log("chango tabs");
+        for (let tab of [...document.querySelectorAll(".tab")]) {
+            tab.dispatchEvent(new Event("nanoUpdateTitle"));
+        }
+    });
     return (
         <div
             class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
@@ -75,27 +81,19 @@ const Tabs = function () {
                 {use(this.tabs, (tabs) =>
                     tabs.map((tab, index) => (
                         <button
-                            on:nanoUpdateTitle={(e) => {
+                            on:nanoUpdateTitle={async (e) => {
                                 e.target.querySelector(".tab-title").innerText =
                                     tab.title;
-                                const parentIcon =
-                                    e.target.querySelector(".tab-icon");
-                                parentIcon.querySelector("svg")?.remove();
-                                if (!parentIcon.querySelector("img")) {
-                                    parentIcon.appendChild(
-                                        Object.assign(
-                                            document.createElement("img"),
-                                            {
-                                                src: e.detail.icon,
-                                                alt: tab.title,
-                                            },
-                                        ),
+                                const href =
+                                    tab.iframe?.querySelector("link[rel=icon]")
+                                        ?.href ||
+                                    `https://${new URL(tab.url).hostname}/favicon.ico`;
+                                if (href) {
+                                    const res = await chemical.fetch(href);
+                                    if (res.status !== 200) return;
+                                    this.tabs[index].icon = URL.createObjectURL(
+                                        await res.blob(),
                                     );
-                                } else {
-                                    parentIcon.querySelector("img").src =
-                                        tab.icon;
-                                    parentIcon.querySelector("img").alt =
-                                        tab.title;
                                 }
                             }}
                             class="tab flex justify-between items-center gap-2 w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
@@ -104,13 +102,18 @@ const Tabs = function () {
                         >
                             <div class="whitespace-nowrap overflow-hidden text-ellipsis flex flex-row items-center gap-2 [&_svg]:size-4 [&_img]:size-4">
                                 <span class="tab-icon inline-flex">
-                                    {tab.icon && tab.url ? (
-                                        <img src={tab.icon} alt={tab.title} />
-                                    ) : (
-                                        <Home />
+                                    {use(this.tabs[index].icon, (icon) =>
+                                        icon ? (
+                                            <img
+                                                src={use(this.tabs[index].icon)}
+                                                alt={tab.title}
+                                            />
+                                        ) : (
+                                            <Home />
+                                        ),
                                     )}
                                 </span>
-                                <p class="tab-title ">{tab.title}</p>
+                                <p class="tab-title">{tab.title}</p>
                             </div>
                             <button
                                 on:click={() => this.removeTab(index)}

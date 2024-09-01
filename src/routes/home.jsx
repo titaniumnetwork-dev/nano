@@ -75,7 +75,6 @@ const Home = function () {
                     window.__uv$config.prefix,
                 )[1],
             );
-            // tab.icon = `https://google.com/s2/favicons?domain=${e.target.contentWindow.location.hostname}`;
             if (this.search) {
                 if (this.tabs[this.current].hasOwnProperty("url")) {
                     this.search.value = this.tabs[this.current].url;
@@ -155,20 +154,7 @@ const Home = function () {
 
     const updateTitles = () => {
         for (let tab of [...document.querySelectorAll(".tab")]) {
-            const url = window.__uv$config.decodeUrl(
-                document
-                    .querySelector("iframe[data-current=true]")
-                    .contentWindow.location.pathname.split(
-                        window.__uv$config.prefix,
-                    )[1],
-            );
-            tab.dispatchEvent(
-                new CustomEvent("nanoUpdateTitle", {
-                    detail: {
-                        icon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=24`,
-                    },
-                }),
-            );
+            tab.dispatchEvent(new Event("nanoUpdateTitle"));
         }
     };
 
