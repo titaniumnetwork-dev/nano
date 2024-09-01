@@ -8,6 +8,7 @@ import ViewSidebar from "../icons/view-sidebar";
 import SettingsIcon from "../icons/settings";
 import { searchURL } from "../util/searchURL";
 import Settings from "../components/settings";
+import setIcon from "../util/setIcon";
 
 const Home = function () {
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
@@ -69,6 +70,7 @@ const Home = function () {
         newIFrame.addEventListener("load", (e) => {
             addKeybinds(e.target.contentWindow);
             interceptLinks(e.target.contentWindow);
+            setIcon(this.current);
 
             tab.url = window.__uv$config.decodeUrl(
                 e.target.contentWindow.location.pathname.split(
@@ -90,7 +92,6 @@ const Home = function () {
             }
         });
         this.windows.appendChild(newIFrame);
-
         return newIFrame;
     };
 

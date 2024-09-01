@@ -2,6 +2,7 @@ import Sortable from "sortablejs";
 import Plus from "../icons/plus";
 import Minus from "../icons/minus";
 import Home from "../icons/home";
+import setIcon from "../util/setIcon";
 
 const Tabs = function () {
     this.mount = () => {
@@ -46,12 +47,7 @@ const Tabs = function () {
             this.tabs[this.current].iframe.dataset.current = "true";
         }
     };
-    useChange(this.tabs, () => {
-        console.log("chango tabs");
-        for (let tab of [...document.querySelectorAll(".tab")]) {
-            tab.dispatchEvent(new Event("nanoUpdateTitle"));
-        }
-    });
+
     return (
         <div
             class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
@@ -81,36 +77,24 @@ const Tabs = function () {
                 {use(this.tabs, (tabs) =>
                     tabs.map((tab, index) => (
                         <button
-                            on:nanoUpdateTitle={async (e) => {
-                                e.target.querySelector(".tab-title").innerText =
-                                    tab.title;
-                                const href =
-                                    tab.iframe?.querySelector("link[rel=icon]")
-                                        ?.href ||
-                                    `https://${new URL(tab.url).hostname}/favicon.ico`;
-                                if (href) {
-                                    const res = await chemical.fetch(href);
-                                    if (res.status !== 200) return;
-                                    this.tabs[index].icon = URL.createObjectURL(
-                                        await res.blob(),
-                                    );
-                                }
-                            }}
+                            on:nanoUpdateTitle={(e) =>
+                                (e.target.querySelector(
+                                    ".tab-title",
+                                ).innerText = tab.title)
+                            }
                             class="tab flex justify-between items-center gap-2 w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
                             aria-label={"Tab #" + String(index)}
                             data-current={index == this.current}
                         >
                             <div class="whitespace-nowrap overflow-hidden text-ellipsis flex flex-row items-center gap-2 [&_svg]:size-4 [&_img]:size-4">
                                 <span class="tab-icon inline-flex">
-                                    {use(this.tabs[index].icon, (icon) =>
-                                        icon ? (
-                                            <img
-                                                src={use(this.tabs[index].icon)}
-                                                alt={tab.title}
-                                            />
-                                        ) : (
-                                            <Home />
-                                        ),
+                                    {tabs[index].icon ? (
+                                        <img
+                                            src={tabs[index].icon}
+                                            alt={tabs[index].title}
+                                        />
+                                    ) : (
+                                        <Home />
                                     )}
                                 </span>
                                 <p class="tab-title">{tab.title}</p>
