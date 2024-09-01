@@ -1,6 +1,8 @@
 import Sortable from "sortablejs";
 import Plus from "../icons/plus";
 import Minus from "../icons/minus";
+import Home from "../icons/home";
+import setIcon from "../util/setIcon";
 
 const Tabs = function () {
     this.mount = () => {
@@ -45,6 +47,7 @@ const Tabs = function () {
             this.tabs[this.current].iframe.dataset.current = "true";
         }
     };
+
     return (
         <div
             class="fixed left-2 top-2 h-[calc(100%_-_4.25rem-0.5rem)] w-[14.5rem] opacity-0 flex flex-col gap-2 sidebar"
@@ -83,9 +86,19 @@ const Tabs = function () {
                             aria-label={"Tab #" + String(index)}
                             data-current={index == this.current}
                         >
-                            <span class="tab-title whitespace-nowrap overflow-hidden text-ellipsis">
-                                {tab.title}
-                            </span>
+                            <div class="whitespace-nowrap overflow-hidden text-ellipsis flex flex-row items-center gap-2 [&_svg]:size-4 [&_img]:size-4">
+                                <span class="tab-icon inline-flex">
+                                    {tabs[index].icon ? (
+                                        <img
+                                            src={tabs[index].icon}
+                                            alt={tabs[index].title}
+                                        />
+                                    ) : (
+                                        <Home />
+                                    )}
+                                </span>
+                                <p class="tab-title">{tab.title}</p>
+                            </div>
                             <button
                                 on:click={() => this.removeTab(index)}
                                 aria-label={"Close tab #" + String(index)}
