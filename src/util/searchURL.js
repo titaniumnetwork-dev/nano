@@ -4,7 +4,7 @@ async function searchURL(
 ) {
     return await window.chemical.encode(input, {
         autoHttps: true,
-        searchEngine
+        searchEngine,
     });
 }
 

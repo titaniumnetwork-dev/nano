@@ -1,6 +1,7 @@
 import Sortable from "sortablejs";
 import Plus from "../icons/plus";
 import Minus from "../icons/minus";
+import Home from "../icons/home";
 
 const Tabs = function () {
     this.mount = () => {
@@ -74,18 +75,43 @@ const Tabs = function () {
                 {use(this.tabs, (tabs) =>
                     tabs.map((tab, index) => (
                         <button
-                            on:nanoUpdateTitle={(e) =>
-                                (e.target.querySelector(
-                                    ".tab-title",
-                                ).innerText = tab.title)
-                            }
+                            on:nanoUpdateTitle={(e) => {
+                                e.target.querySelector(".tab-title").innerText =
+                                    tab.title;
+                                const parentIcon =
+                                    e.target.querySelector(".tab-icon");
+                                parentIcon.querySelector("svg")?.remove();
+                                if (!parentIcon.querySelector("img")) {
+                                    parentIcon.appendChild(
+                                        Object.assign(
+                                            document.createElement("img"),
+                                            {
+                                                src: e.detail.icon,
+                                                alt: tab.title,
+                                            },
+                                        ),
+                                    );
+                                } else {
+                                    parentIcon.querySelector("img").src =
+                                        tab.icon;
+                                    parentIcon.querySelector("img").alt =
+                                        tab.title;
+                                }
+                            }}
                             class="tab flex justify-between items-center gap-2 w-full h-10 rounded-xl text-left px-4 shrink-0 select-none"
                             aria-label={"Tab #" + String(index)}
                             data-current={index == this.current}
                         >
-                            <span class="tab-title whitespace-nowrap overflow-hidden text-ellipsis">
-                                {tab.title}
-                            </span>
+                            <div class="whitespace-nowrap overflow-hidden text-ellipsis flex flex-row items-center gap-2 [&_svg]:size-4 [&_img]:size-4">
+                                <span class="tab-icon inline-flex">
+                                    {tab.icon && tab.url ? (
+                                        <img src={tab.icon} alt={tab.title} />
+                                    ) : (
+                                        <Home />
+                                    )}
+                                </span>
+                                <p class="tab-title ">{tab.title}</p>
+                            </div>
                             <button
                                 on:click={() => this.removeTab(index)}
                                 aria-label={"Close tab #" + String(index)}
