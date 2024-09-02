@@ -312,8 +312,6 @@ const Home = function () {
     const addKeybinds = (win = window) => {
         const isPwa = ["Ctrl", "Cmd"].includes(this.actionKey);
         win.addEventListener("keyup", (e) => {
-            e.stopPropagation();
-            e.preventDefault();
             const platDependentAltOrCtrl = isMac
                 ? !e.altKey && e.ctrlKey
                 : e.altKey && !e.ctrlKey;
@@ -325,6 +323,8 @@ const Home = function () {
                 !e.shiftKey &&
                 !e.metaKey
             ) {
+                e.stopPropagation();
+                e.preventDefault();
                 switch (e.key) {
                     case "a":
                         toggleSidebar("tabs");
@@ -398,7 +398,7 @@ const Home = function () {
                     <button
                         on:click={() => toggleSidebar("tabs")}
                         aria-label="Tabs Sidebar"
-                        title={`Tabs (${isMac ? "Control" : "Alt"}+A))`}
+                        title={use`Tabs (${this.actionKey}+A))`}
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center ml-1 p-2"
                         class:bg-Surface0={use(this.tabsActive)}
                     >
@@ -407,7 +407,7 @@ const Home = function () {
                     <button
                         on:click={() => toggleSidebar("settings")}
                         aria-label="Settings Sidebar"
-                        title={`Settings (${isMac ? "Control" : "Alt"}+S)`}
+                        title={use`Settings (${this.actionKey}+S)`}
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                         class:bg-Surface0={use(this.settingsActive)}
                     >
