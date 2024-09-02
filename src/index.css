@@ -229,3 +229,7 @@ body:not([data-dragging="true"]) .tab:hover .tab-close,
 .sidebar-hidden {
     @apply !opacity-0 pointer-events-none;
 }
+
+.pwa-drag {
+    -webkit-app-region: drag;
+}

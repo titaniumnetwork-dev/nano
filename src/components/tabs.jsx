@@ -2,7 +2,6 @@ import Sortable from "sortablejs";
 import Plus from "../icons/plus";
 import Minus from "../icons/minus";
 import Home from "../icons/home";
-import setIcon from "../util/setIcon";
 
 const Tabs = function () {
     this.mount = () => {
@@ -60,7 +59,7 @@ const Tabs = function () {
             <button
                 on:click={() => this.newTab()}
                 aria-label="New Tab"
-                title="New Tab (Alt+T)"
+                title={use`New Tab (${this.actionKey}+T)`}
                 class="bg-Base w-full h-10 rounded-xl text-left px-4 shrink-0 flex items-center gap-2 select-none whitespace-nowrap overflow-hidden text-ellipsis"
             >
                 <div class="h-4 w-4 rounded-full flex justify-center items-center">
@@ -70,7 +69,7 @@ const Tabs = function () {
                     New Tab
                 </span>
                 <span class="whitespace-nowrap overflow-hidden text-ellipsis ml-auto text-Subtext0">
-                    Alt+T
+                    {use(this.actionKey, (actionKey) => `${actionKey}+T`)}
                 </span>
             </button>
             <div class="flex flex-col gap-2 overflow-y-auto tabs">
@@ -102,7 +101,7 @@ const Tabs = function () {
                             <button
                                 on:click={() => this.removeTab(index)}
                                 aria-label={"Close tab #" + String(index)}
-                                title="Close Tab (Alt+W)"
+                                title={use`Close Tab (${this.actionKey}+W)`}
                                 class="tab-close opacity-0 h-4 w-4 rounded-full flex justify-center items-center"
                             >
                                 <Minus />
