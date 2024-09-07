@@ -12,30 +12,7 @@ import setIcon from "../util/setIcon";
 
 const Home = function () {
     const isMac = navigator.userAgent.includes("Mac");
-    this.actionKey = window.matchMedia(
-        "(display-mode: standalone) or (display-mode: window-controls-overlay)",
-    ).matches
-        ? isMac
-            ? "Cmd"
-            : "Ctrl"
-        : isMac
-          ? "Control"
-          : "Alt";
-    window
-        .matchMedia(
-            "(display-mode: standalone) or (display-mode: window-controls-overlay)",
-        )
-        .addEventListener(
-            "change",
-            ({ matches }) =>
-                (this.actionKey = matches
-                    ? isMac
-                        ? "Cmd"
-                        : "Ctrl"
-                    : isMac
-                      ? "Control"
-                      : "Alt"),
-        );
+    this.actionKey = isMac ? "Control" : "Alt";
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
@@ -310,19 +287,11 @@ const Home = function () {
     };
 
     const addKeybinds = (win = window) => {
-        const isPwa = ["Ctrl", "Cmd"].includes(this.actionKey);
         win.addEventListener("keyup", (e) => {
             const platDependentAltOrCtrl = isMac
                 ? !e.altKey && e.ctrlKey
                 : e.altKey && !e.ctrlKey;
-            const ctrlOrCmd = isMac
-                ? e.metaKey && !e.ctrlKey
-                : e.ctrlKey && !e.metaKey;
-            if (
-                (isPwa ? ctrlOrCmd : platDependentAltOrCtrl) &&
-                !e.shiftKey &&
-                !e.metaKey
-            ) {
+            if (platDependentAltOrCtrl && !e.shiftKey && !e.metaKey) {
                 e.stopPropagation();
                 e.preventDefault();
                 switch (e.key) {
