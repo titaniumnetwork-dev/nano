@@ -11,6 +11,8 @@ import Settings from "../components/settings";
 import setIcon from "../util/setIcon";
 
 const Home = function () {
+    const isMac = navigator.userAgent.includes("Mac");
+    this.actionKey = isMac ? "Control" : "Alt";
     this.theme = localStorage.getItem("@nano/theme") || "mocha";
     this.windows = null;
     this.search = null;
@@ -286,7 +288,12 @@ const Home = function () {
 
     const addKeybinds = (win = window) => {
         win.addEventListener("keyup", (e) => {
-            if (e.altKey && !e.ctrlKey && !e.shiftKey) {
+            const platDependentAltOrCtrl = isMac
+                ? !e.altKey && e.ctrlKey
+                : e.altKey && !e.ctrlKey;
+            if (platDependentAltOrCtrl && !e.shiftKey && !e.metaKey) {
+                e.stopPropagation();
+                e.preventDefault();
                 switch (e.key) {
                     case "a":
                         toggleSidebar("tabs");
@@ -333,6 +340,7 @@ const Home = function () {
                 bind:tabs={use(this.tabs)}
                 bind:sidebar={use(this.sidebar)}
                 bind:sidebarPage={use(this.sidebarPage)}
+                bind:actionKey={use(this.actionKey)}
                 newTab={newTab}
                 removeTab={removeTab}
             />
@@ -359,7 +367,7 @@ const Home = function () {
                     <button
                         on:click={() => toggleSidebar("tabs")}
                         aria-label="Tabs Sidebar"
-                        title="Tabs (Alt+A)"
+                        title={use`Tabs (${this.actionKey}+A))`}
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center ml-1 p-2"
                         class:bg-Surface0={use(this.tabsActive)}
                     >
@@ -368,7 +376,7 @@ const Home = function () {
                     <button
                         on:click={() => toggleSidebar("settings")}
                         aria-label="Settings Sidebar"
-                        title="Settings (Alt+S)"
+                        title={use`Settings (${this.actionKey}+S)`}
                         class="sidebar-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                         class:bg-Surface0={use(this.settingsActive)}
                     >
@@ -385,7 +393,7 @@ const Home = function () {
                     <button
                         on:click={back}
                         aria-label="Back"
-                        title="Go Back (Alt+Left)"
+                        title={use`Go Back (${this.actionKey}+Left)`}
                         class="left-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <ArrowLeft class="left-animated" />
@@ -393,7 +401,7 @@ const Home = function () {
                     <button
                         on:click={forward}
                         aria-label="Forward"
-                        title="Go Forward (Alt+Right)"
+                        title={use`Go Forward (${this.actionKey}+Right)`}
                         class="right-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <ArrowRight class="right-animated" />
@@ -401,7 +409,7 @@ const Home = function () {
                     <button
                         on:click={reload}
                         aria-label="Reload"
-                        title="Reload (Alt+R)"
+                        title={use`Reload (${this.actionKey}+R)`}
                         class="rotate-animation h-8 w-8 rounded-full flex justify-center items-center mr-1 bg-Surface0 p-2"
                     >
                         <RotateCW class="rotate-animated" />

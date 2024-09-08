@@ -1,0 +1,15 @@
+{
+    "name": "Nano",
+    "start_url": "/",
+    "lang": "en-US",
+    "display": "standalone",
+    "background_color": "#1e1e2e",
+    "theme_color": "#11111b",
+    "display_override": ["window-controls-overlay"],
+    "icons": [
+        {
+            "src": "/logo.svg",
+            "sizes": "any"
+        }
+    ]
+}

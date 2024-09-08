@@ -17,6 +17,7 @@ const Windows = function () {
             class="fixed top-0 right-0 bg-Crust w-full h-[calc(100%_-_4.25rem)] flex flex-col justify-center items-center select-none overflow-hidden iframe-transitions"
             class:iframe-sidebar-open={use(this.sidebar)}
         >
+            <div class="absolute top-0 w-screen h-12 pwa-drag" />
             <div
                 class="block h-full w-full relative flex flex-col justify-center"
                 class:hidden={use(this.currentHasURL)}
